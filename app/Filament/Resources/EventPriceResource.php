@@ -44,9 +44,18 @@ class EventPriceResource extends Resource
                             ->required()
                             ->helperText('simposium, handson, funrun, pengmas'),
 
+                        Forms\Components\TextInput::make('event_variant')
+                            ->label('Varian')
+                            ->helperText('Opsional. Contoh: ho1, ho2, 5k, 3k'),
+
                         Forms\Components\TextInput::make('event_label')
                             ->label('Nama Acara')
                             ->required(),
+
+                        Forms\Components\Textarea::make('event_description')
+                            ->label('Deskripsi')
+                            ->helperText('Opsional. Ditampilkan di halaman registrasi.')
+                            ->rows(3),
 
                         Forms\Components\Toggle::make('is_bundle')
                             ->label('Paket Bundling')

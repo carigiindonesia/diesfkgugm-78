@@ -55,6 +55,7 @@
 
       <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-white/15 font-bold tracking-[0.2em] uppercase">
         <p>&copy; 2026 Panitia Dies Natalis FKG UGM ke-78. All rights reserved.</p>
+        <p class="text-white/25">Website and Event Registrations supported by Carigi Indonesia 2026</p>
         <p>Empowering Dental Sociopreneurs</p>
       </div>
     </div>

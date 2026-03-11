@@ -12,7 +12,9 @@ class EventPrice extends Model
     protected $fillable = [
         'category',
         'event_code',
+        'event_variant',
         'event_label',
+        'event_description',
         'is_bundle',
         'bundle_code',
         'bundle_label',
