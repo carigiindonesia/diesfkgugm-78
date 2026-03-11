@@ -6,11 +6,16 @@ use App\Models\EventPrice;
 
 class PricingService
 {
-    const FEE_PERCENTAGE = 0.10;
+    const PLATFORM_FEE_PERCENTAGE = 0.10;
+
+    const PPN_PERCENTAGE = 0.11;
 
     public static function calculateDisplayPrice(int $basePrice): int
     {
-        return $basePrice + (int) round($basePrice * self::FEE_PERCENTAGE);
+        $afterPlatformFee = $basePrice * (1 + self::PLATFORM_FEE_PERCENTAGE);
+        $afterPpn = $afterPlatformFee * (1 + self::PPN_PERCENTAGE);
+
+        return (int) round($afterPpn);
     }
 
     public static function calculateFee(int $basePrice): int

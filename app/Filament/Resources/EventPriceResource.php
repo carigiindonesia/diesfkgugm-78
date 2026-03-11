@@ -70,14 +70,14 @@ class EventPriceResource extends Resource
                             ->label('Harga Dasar (Rp)')
                             ->numeric()
                             ->required()
-                            ->helperText('Harga sebelum biaya 10%. Display price dihitung otomatis.'),
+                            ->helperText('Harga sebelum biaya layanan (10%) dan PPN (11%). Display price dihitung otomatis.'),
 
                         Forms\Components\TextInput::make('display_price')
                             ->label('Harga Tampil (Rp)')
                             ->numeric()
                             ->disabled()
                             ->dehydrated(false)
-                            ->helperText('Dihitung otomatis: harga dasar x 1.10'),
+                            ->helperText('Dihitung otomatis: harga dasar × 1.10 × 1.11 (termasuk biaya layanan + PPN 11%)'),
 
                         Forms\Components\Toggle::make('is_active')
                             ->label('Aktif')

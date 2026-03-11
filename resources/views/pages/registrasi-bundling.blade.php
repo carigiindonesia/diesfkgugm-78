@@ -79,7 +79,7 @@
               <p class="text-3xl font-black text-amber-600 mb-1">
                 Rp {{ number_format($bundle->display_price, 0, ',', '.') }}
               </p>
-              <p class="text-xs text-slate-400 mb-6">Sudah termasuk biaya layanan & transaksi</p>
+              <p class="text-xs text-slate-400 mb-6">Sudah termasuk PPN 11%, biaya layanan & transaksi digital</p>
             </div>
 
             <button onclick="selectBundle({{ $bundle->id }})"
@@ -223,23 +223,11 @@
             <div id="price-summary" class="hidden mt-8 bg-amber-50 rounded-2xl p-6 border border-amber-100">
               <h3 class="font-bold text-slate-800 mb-4">Ringkasan Harga</h3>
               <div class="space-y-2 text-sm">
-                <div class="flex justify-between text-slate-600">
-                  <span>Harga Paket <span id="summary-qty-label"></span></span>
-                  <span id="summary-base">Rp 0</span>
-                </div>
-                <div class="flex justify-between text-slate-600">
-                  <span>Biaya Layanan (5%)</span>
-                  <span id="summary-service">Rp 0</span>
-                </div>
-                <div class="flex justify-between text-slate-600">
-                  <span>Biaya Transaksi (5%)</span>
-                  <span id="summary-transaction">Rp 0</span>
-                </div>
-                <hr class="my-3 border-amber-200">
                 <div class="flex justify-between font-black text-lg text-amber-700">
-                  <span>Total</span>
+                  <span>Total <span id="summary-qty-label" class="text-sm font-normal text-slate-500"></span></span>
                   <span id="summary-total">Rp 0</span>
                 </div>
+                <p class="text-xs text-slate-400 mt-2">Harga sudah termasuk PPN 11%, biaya layanan & transaksi digital</p>
               </div>
             </div>
 
@@ -367,16 +355,10 @@
       var bundle = bundlesData[currentBundleId];
       if (!bundle) return;
 
-      var base = bundle.base_price * currentQuantity;
-      var service = Math.round(bundle.base_price * 0.05) * currentQuantity;
-      var transaction = Math.round(bundle.base_price * 0.05) * currentQuantity;
       var total = bundle.display_price * currentQuantity;
 
       var qtyLabel = currentQuantity > 1 ? '(' + currentQuantity + ' paket)' : '';
       document.getElementById('summary-qty-label').textContent = qtyLabel;
-      document.getElementById('summary-base').textContent = formatRupiah(base);
-      document.getElementById('summary-service').textContent = formatRupiah(service);
-      document.getElementById('summary-transaction').textContent = formatRupiah(transaction);
       document.getElementById('summary-total').textContent = formatRupiah(total);
       document.getElementById('price-summary').classList.remove('hidden');
     }

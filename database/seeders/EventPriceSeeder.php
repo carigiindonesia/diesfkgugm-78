@@ -34,7 +34,7 @@ class EventPriceSeeder extends Seeder
                 [
                     'event_label' => $eventLabel,
                     'base_price' => $basePrice,
-                    'display_price' => (int) ceil($basePrice * 1.10),
+                    'display_price' => (int) round($basePrice * 1.10 * 1.11),
                     'is_active' => true,
                     'sort_order' => $sortOrder++,
                 ]
@@ -68,7 +68,7 @@ class EventPriceSeeder extends Seeder
                     'bundle_label' => $bundleLabel,
                     'bundle_events' => $bundleEvents,
                     'base_price' => $basePrice,
-                    'display_price' => (int) ceil($basePrice * 1.10),
+                    'display_price' => (int) round($basePrice * 1.10 * 1.11),
                     'is_active' => true,
                     'sort_order' => $sortOrder++,
                 ]
