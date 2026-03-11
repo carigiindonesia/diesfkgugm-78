@@ -8,10 +8,8 @@ cd "$DEPLOY_DIR"
 
 export IMAGE_TAG="$IMAGE_TAG"
 
-# Export vars from .env that docker-compose needs for image resolution
-set -a
-source .env
-set +a
+# Export IMAGE_NAME from .env for docker-compose image resolution
+export IMAGE_NAME=$(grep '^IMAGE_NAME=' .env | cut -d'=' -f2)
 
 echo "==> Pulling latest images..."
 docker compose pull app worker
