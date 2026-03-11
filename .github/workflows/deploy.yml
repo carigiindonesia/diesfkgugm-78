@@ -62,8 +62,11 @@ jobs:
             ${{ secrets.PRODUCTION_ENV }}
             ENVEOF
 
+            # Set image name for docker-compose
+            echo "IMAGE_NAME=${{ github.repository }}" >> .env
+
             # Login to GHCR and pull
-            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
             # Run deployment
             bash deploy.sh ${{ steps.meta.outputs.version }}

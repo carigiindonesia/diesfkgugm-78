@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/${COMPOSE_PROJECT_NAME:-diesfkgugm-78}:${IMAGE_TAG:-latest}
+    image: ghcr.io/${IMAGE_NAME}:${IMAGE_TAG:-latest}
     restart: unless-stopped
     env_file: .env
     ports:
@@ -33,7 +33,7 @@ services:
       - app-network
 
   worker:
-    image: ghcr.io/${COMPOSE_PROJECT_NAME:-diesfkgugm-78}:${IMAGE_TAG:-latest}
+    image: ghcr.io/${IMAGE_NAME}:${IMAGE_TAG:-latest}
     restart: unless-stopped
     env_file: .env
     command: ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
