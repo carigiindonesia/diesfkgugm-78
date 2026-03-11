@@ -52,7 +52,7 @@
           <div class="w-14 h-14 bg-green-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-green-100 transition-colors">
             <i data-lucide="footprints" class="w-6 h-6 text-green-600"></i>
           </div>
-          <h4 class="text-xl font-black text-slate-800 mb-2">Fun Run 5K</h4>
+          <h4 class="text-xl font-black text-slate-800 mb-2">Fun Run 5K &amp; 3K</h4>
           <p class="text-slate-500 text-sm mb-4 leading-relaxed">Lari sehat kemeriahan Dies Natalis bersama civitas akademika dan alumni.</p>
           <div class="flex items-center justify-between">
             <span class="text-xs font-bold text-slate-400">19 April</span>

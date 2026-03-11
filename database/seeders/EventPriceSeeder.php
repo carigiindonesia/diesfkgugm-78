@@ -9,30 +9,61 @@ class EventPriceSeeder extends Seeder
 {
     public function run(): void
     {
+        // [category, event_code, event_variant, event_label, event_description, base_price]
         $individualPrices = [
-            // [category, event_code, event_label, base_price]
-            ['alumni', 'simposium', 'Simposium', 1000000],
-            ['alumni', 'handson', 'Hands-on Workshop', 1500000],
-            ['alumni', 'funrun', 'Fun Run 5K', 350000],
-            ['alumni', 'pengmas', 'Pengabdian Masyarakat', 250000],
+            // Simposium
+            ['alumni', 'simposium', null, 'Simposium', null, 1000000],
+            ['civitas', 'simposium', null, 'Simposium', null, 750000],
+            ['umum', 'simposium', null, 'Simposium', null, 1150000],
 
-            ['civitas', 'simposium', 'Simposium', 750000],
-            ['civitas', 'handson', 'Hands-on Workshop', 1500000],
-            ['civitas', 'funrun', 'Fun Run 5K', 250000],
-            ['civitas', 'pengmas', 'Pengabdian Masyarakat', 150000],
+            // Hands-on Workshops (each sold separately)
+            ['alumni', 'handson', 'ho1', 'HO 1 — drg. Ryant Ganda S., Sp.B.M.Mf', 'Basic Digital Implantology: Step by Step from Planning to Guide Fabrication', 1500000],
+            ['alumni', 'handson', 'ho2', 'HO 2 — drg. Rahmat Hidayat, Sp.Pros', 'Mastering Suction Dentures: Hands-On Techniques for Maximum Retention and Stabilization', 1500000],
+            ['alumni', 'handson', 'ho3', 'HO 3 — drg. Pribadi Santosa, M.S., Sp.KG, Subsp.KR(K)', null, 1500000],
+            ['alumni', 'handson', 'ho4', 'HO 4 — drg. Aji Tri Baskara, Sp.KG', null, 1500000],
+            ['alumni', 'handson', 'ho5', 'HO 5 — drg. Rifqie Al Haris', null, 1500000],
+            ['alumni', 'handson', 'ho6', 'HO 6 — drg. Anrizandy Narwidina, MDSc, Sp.KGA, Ph.D', null, 1500000],
+            ['alumni', 'handson', 'ho7', 'HO 7 — Dari Klinik ke Manuskrip Bereputasi', 'Dari Klinik ke Manuskrip Bereputasi, Solusi bagi Residen Menjawab Tuntutan Publikasi', 1500000],
 
-            ['umum', 'simposium', 'Simposium', 1150000],
-            ['umum', 'handson', 'Hands-on Workshop', 1500000],
-            ['umum', 'funrun', 'Fun Run 5K', 400000],
-            ['umum', 'pengmas', 'Pengabdian Masyarakat', 300000],
+            ['civitas', 'handson', 'ho1', 'HO 1 — drg. Ryant Ganda S., Sp.B.M.Mf', 'Basic Digital Implantology: Step by Step from Planning to Guide Fabrication', 1500000],
+            ['civitas', 'handson', 'ho2', 'HO 2 — drg. Rahmat Hidayat, Sp.Pros', 'Mastering Suction Dentures: Hands-On Techniques for Maximum Retention and Stabilization', 1500000],
+            ['civitas', 'handson', 'ho3', 'HO 3 — drg. Pribadi Santosa, M.S., Sp.KG, Subsp.KR(K)', null, 1500000],
+            ['civitas', 'handson', 'ho4', 'HO 4 — drg. Aji Tri Baskara, Sp.KG', null, 1500000],
+            ['civitas', 'handson', 'ho5', 'HO 5 — drg. Rifqie Al Haris', null, 1500000],
+            ['civitas', 'handson', 'ho6', 'HO 6 — drg. Anrizandy Narwidina, MDSc, Sp.KGA, Ph.D', null, 1500000],
+            ['civitas', 'handson', 'ho7', 'HO 7 — Dari Klinik ke Manuskrip Bereputasi', 'Dari Klinik ke Manuskrip Bereputasi, Solusi bagi Residen Menjawab Tuntutan Publikasi', 1500000],
+
+            ['umum', 'handson', 'ho1', 'HO 1 — drg. Ryant Ganda S., Sp.B.M.Mf', 'Basic Digital Implantology: Step by Step from Planning to Guide Fabrication', 1500000],
+            ['umum', 'handson', 'ho2', 'HO 2 — drg. Rahmat Hidayat, Sp.Pros', 'Mastering Suction Dentures: Hands-On Techniques for Maximum Retention and Stabilization', 1500000],
+            ['umum', 'handson', 'ho3', 'HO 3 — drg. Pribadi Santosa, M.S., Sp.KG, Subsp.KR(K)', null, 1500000],
+            ['umum', 'handson', 'ho4', 'HO 4 — drg. Aji Tri Baskara, Sp.KG', null, 1500000],
+            ['umum', 'handson', 'ho5', 'HO 5 — drg. Rifqie Al Haris', null, 1500000],
+            ['umum', 'handson', 'ho6', 'HO 6 — drg. Anrizandy Narwidina, MDSc, Sp.KGA, Ph.D', null, 1500000],
+            ['umum', 'handson', 'ho7', 'HO 7 — Dari Klinik ke Manuskrip Bereputasi', 'Dari Klinik ke Manuskrip Bereputasi, Solusi bagi Residen Menjawab Tuntutan Publikasi', 1500000],
+
+            // Fun Run (5K and 3K, same price)
+            ['alumni', 'funrun', '5k', 'Fun Run 5K', "Sudah termasuk:\n• Running Jersey\n• Finisher Medal\n• Snack and Refreshment\n• Doorprize", 350000],
+            ['alumni', 'funrun', '3k', 'Fun Run 3K', "Sudah termasuk:\n• Running Jersey\n• Finisher Medal\n• Snack and Refreshment\n• Doorprize", 350000],
+
+            ['civitas', 'funrun', '5k', 'Fun Run 5K', "Sudah termasuk:\n• Running Jersey\n• Finisher Medal\n• Snack and Refreshment\n• Doorprize", 250000],
+            ['civitas', 'funrun', '3k', 'Fun Run 3K', "Sudah termasuk:\n• Running Jersey\n• Finisher Medal\n• Snack and Refreshment\n• Doorprize", 250000],
+
+            ['umum', 'funrun', '5k', 'Fun Run 5K', "Sudah termasuk:\n• Running Jersey\n• Finisher Medal\n• Snack and Refreshment\n• Doorprize", 400000],
+            ['umum', 'funrun', '3k', 'Fun Run 3K', "Sudah termasuk:\n• Running Jersey\n• Finisher Medal\n• Snack and Refreshment\n• Doorprize", 400000],
+
+            // Pengabdian Masyarakat
+            ['alumni', 'pengmas', null, 'Pengabdian Masyarakat', null, 250000],
+            ['civitas', 'pengmas', null, 'Pengabdian Masyarakat', null, 150000],
+            ['umum', 'pengmas', null, 'Pengabdian Masyarakat', null, 300000],
         ];
 
         $sortOrder = 1;
-        foreach ($individualPrices as [$category, $eventCode, $eventLabel, $basePrice]) {
+        foreach ($individualPrices as [$category, $eventCode, $variant, $eventLabel, $description, $basePrice]) {
             EventPrice::updateOrCreate(
-                ['category' => $category, 'event_code' => $eventCode, 'is_bundle' => false, 'bundle_code' => null],
+                ['category' => $category, 'event_code' => $eventCode, 'event_variant' => $variant, 'is_bundle' => false, 'bundle_code' => null],
                 [
                     'event_label' => $eventLabel,
+                    'event_description' => $description,
                     'base_price' => $basePrice,
                     'display_price' => (int) round($basePrice * 1.10 * 1.11),
                     'is_active' => true,

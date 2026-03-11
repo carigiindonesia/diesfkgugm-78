@@ -37,6 +37,9 @@
                id="card-{{ $price->id }}">
             <div class="flex-1">
               <h3 class="text-xl font-black text-slate-800 mb-2">{{ $price->event_label }}</h3>
+              @if($price->event_description)
+                <div class="text-xs text-slate-500 mb-3 leading-relaxed whitespace-pre-line">{{ $price->event_description }}</div>
+              @endif
               <p class="text-3xl font-black text-amber-600 mb-1">
                 Rp {{ number_format($price->display_price, 0, ',', '.') }}
               </p>
