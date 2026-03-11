@@ -78,108 +78,137 @@
             @csrf
             <input type="hidden" name="event_price_id" id="input-event-price-id" value="{{ old('event_price_id', $selectedEvent) }}">
             <input type="hidden" name="category" value="{{ $category }}">
+            <input type="hidden" name="quantity" id="input-quantity" value="{{ old('quantity', 1) }}">
 
-            <div class="space-y-5">
-              <!-- Common Fields -->
-              <div>
-                <label class="block text-sm font-bold text-slate-700 mb-2">Nama Lengkap</label>
-                <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}" required
-                       class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
-                @error('nama_lengkap') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-              </div>
-
-              <div>
-                <label class="block text-sm font-bold text-slate-700 mb-2">Tanggal Lahir</label>
-                <input type="date" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" required
-                       class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
-                @error('tanggal_lahir') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-              </div>
-
-              <!-- SatuSehat Fields (simposium, handson, pengmas) -->
-              <div id="fields-satusehat" class="hidden space-y-5">
-                <div>
-                  <label class="block text-sm font-bold text-slate-700 mb-2">Nama di SatuSehat SDMK</label>
-                  <input type="text" name="nama_satusehat" value="{{ old('nama_satusehat') }}"
-                         class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
-                  @error('nama_satusehat') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>
-
-                <div>
-                  <label class="block text-sm font-bold text-slate-700 mb-2">Email SatuSehat SDMK</label>
-                  <input type="email" name="email_satusehat" value="{{ old('email_satusehat') }}"
-                         class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
-                  @error('email_satusehat') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>
-
-                <div>
-                  <label class="block text-sm font-bold text-slate-700 mb-2">WhatsApp SatuSehat SDMK</label>
-                  <input type="text" name="whatsapp_satusehat" value="{{ old('whatsapp_satusehat') }}"
-                         class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
-                  @error('whatsapp_satusehat') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>
-              </div>
-
-              <!-- Fun Run Fields -->
-              <div id="fields-funrun" class="hidden space-y-5">
-                <div>
-                  <label class="block text-sm font-bold text-slate-700 mb-2">Email</label>
-                  <input type="email" name="email" value="{{ old('email') }}"
-                         class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
-                  @error('email') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>
-
-                <div>
-                  <label class="block text-sm font-bold text-slate-700 mb-2">WhatsApp</label>
-                  <input type="text" name="whatsapp" value="{{ old('whatsapp') }}"
-                         class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
-                  @error('whatsapp') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>
-
-                <div>
-                  <label class="block text-sm font-bold text-slate-700 mb-2">Tipe Jersey</label>
-                  <div class="flex gap-6">
-                    <label class="flex items-center gap-2 cursor-pointer">
-                      <input type="radio" name="jersey_type" value="dewasa" {{ old('jersey_type') === 'dewasa' ? 'checked' : '' }}
-                             class="w-4 h-4 text-amber-600 border-slate-300 focus:ring-amber-400">
-                      <span class="text-sm text-slate-700">Dewasa</span>
-                    </label>
-                    <label class="flex items-center gap-2 cursor-pointer">
-                      <input type="radio" name="jersey_type" value="anak" {{ old('jersey_type') === 'anak' ? 'checked' : '' }}
-                             class="w-4 h-4 text-amber-600 border-slate-300 focus:ring-amber-400">
-                      <span class="text-sm text-slate-700">Anak</span>
-                    </label>
-                  </div>
-                  @error('jersey_type') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>
-
-                <div>
-                  <label class="block text-sm font-bold text-slate-700 mb-2">Ukuran Jersey</label>
-                  <select name="jersey_size"
-                          class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
-                    <option value="">Pilih ukuran</option>
-                    @foreach(['S', 'M', 'L', 'XL', 'XXL', 'XXXL'] as $size)
-                      <option value="{{ $size }}" {{ old('jersey_size') === $size ? 'selected' : '' }}>{{ $size }}</option>
-                    @endforeach
-                  </select>
-                  @error('jersey_size') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>
-              </div>
-
-              <!-- Lembaga (shared by all) -->
-              <div>
-                <label class="block text-sm font-bold text-slate-700 mb-2">Lembaga / Institusi</label>
-                <input type="text" name="lembaga" value="{{ old('lembaga') }}" required
-                       class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
-                @error('lembaga') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+            <!-- Quantity Selector -->
+            <div class="mb-8">
+              <label class="block text-sm font-bold text-slate-700 mb-3">Jumlah Tiket</label>
+              <div class="flex items-center gap-4">
+                <button type="button" onclick="changeQuantity(-1)"
+                        class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-lg flex items-center justify-center transition-all">
+                  -
+                </button>
+                <span id="quantity-display" class="text-2xl font-black text-amber-600 w-8 text-center">1</span>
+                <button type="button" onclick="changeQuantity(1)"
+                        class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-lg flex items-center justify-center transition-all">
+                  +
+                </button>
+                <span class="text-xs text-slate-400">Maks. 10 tiket per pembayaran</span>
               </div>
             </div>
+
+            <!-- Participant 1 (Buyer / Pemesan) -->
+            <div id="participant-0" class="participant-section">
+              <div class="flex items-center gap-3 mb-5">
+                <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold">1</div>
+                <h3 class="text-lg font-bold text-slate-800">Peserta 1 <span class="text-xs text-slate-400 font-normal">(Pemesan)</span></h3>
+              </div>
+
+              <div class="space-y-5">
+                <!-- Common Fields -->
+                <div>
+                  <label class="block text-sm font-bold text-slate-700 mb-2">Nama Lengkap</label>
+                  <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}" required
+                         class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
+                  @error('nama_lengkap') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <div>
+                  <label class="block text-sm font-bold text-slate-700 mb-2">Tanggal Lahir</label>
+                  <input type="date" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" required
+                         class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
+                  @error('tanggal_lahir') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- SatuSehat Fields (simposium, handson, pengmas) -->
+                <div id="fields-satusehat-0" class="hidden space-y-5">
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">Nama di SatuSehat SDMK</label>
+                    <input type="text" name="nama_satusehat" value="{{ old('nama_satusehat') }}"
+                           class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
+                    @error('nama_satusehat') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">Email SatuSehat SDMK</label>
+                    <input type="email" name="email_satusehat" value="{{ old('email_satusehat') }}"
+                           class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
+                    @error('email_satusehat') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">WhatsApp SatuSehat SDMK</label>
+                    <input type="text" name="whatsapp_satusehat" value="{{ old('whatsapp_satusehat') }}"
+                           class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
+                    @error('whatsapp_satusehat') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                  </div>
+                </div>
+
+                <!-- Fun Run Fields -->
+                <div id="fields-funrun-0" class="hidden space-y-5">
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">Email</label>
+                    <input type="email" name="email" value="{{ old('email') }}"
+                           class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
+                    @error('email') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">WhatsApp</label>
+                    <input type="text" name="whatsapp" value="{{ old('whatsapp') }}"
+                           class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
+                    @error('whatsapp') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">Tipe Jersey</label>
+                    <div class="flex gap-6">
+                      <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="jersey_type" value="dewasa" {{ old('jersey_type') === 'dewasa' ? 'checked' : '' }}
+                               class="w-4 h-4 text-amber-600 border-slate-300 focus:ring-amber-400">
+                        <span class="text-sm text-slate-700">Dewasa</span>
+                      </label>
+                      <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="jersey_type" value="anak" {{ old('jersey_type') === 'anak' ? 'checked' : '' }}
+                               class="w-4 h-4 text-amber-600 border-slate-300 focus:ring-amber-400">
+                        <span class="text-sm text-slate-700">Anak</span>
+                      </label>
+                    </div>
+                    @error('jersey_type') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">Ukuran Jersey</label>
+                    <select name="jersey_size"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
+                      <option value="">Pilih ukuran</option>
+                      @foreach(['S', 'M', 'L', 'XL', 'XXL', 'XXXL'] as $size)
+                        <option value="{{ $size }}" {{ old('jersey_size') === $size ? 'selected' : '' }}>{{ $size }}</option>
+                      @endforeach
+                    </select>
+                    @error('jersey_size') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                  </div>
+                </div>
+
+                <!-- Lembaga -->
+                <div>
+                  <label class="block text-sm font-bold text-slate-700 mb-2">Lembaga / Institusi</label>
+                  <input type="text" name="lembaga" value="{{ old('lembaga') }}" required
+                         class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
+                  @error('lembaga') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Participants Container -->
+            <div id="additional-participants"></div>
 
             <!-- Price Summary -->
             <div id="price-summary" class="hidden mt-8 bg-amber-50 rounded-2xl p-6 border border-amber-100">
               <h3 class="font-bold text-slate-800 mb-4">Ringkasan Harga</h3>
               <div class="space-y-2 text-sm">
                 <div class="flex justify-between text-slate-600">
-                  <span>Harga Dasar</span>
+                  <span>Harga Dasar <span id="summary-qty-label"></span></span>
                   <span id="summary-base">Rp 0</span>
                 </div>
                 <div class="flex justify-between text-slate-600">
@@ -214,25 +243,132 @@
   <script>
     const pricesData = @json($prices->keyBy('id'));
     const satusehatTypes = ['simposium', 'handson', 'pengmas'];
+    let currentQuantity = {{ old('quantity', 1) }};
+    let currentEventType = null;
+    let currentPriceId = null;
 
     function formatRupiah(amount) {
       return 'Rp ' + new Intl.NumberFormat('id-ID').format(amount);
     }
 
+    function changeQuantity(delta) {
+      const newQty = currentQuantity + delta;
+      if (newQty < 1 || newQty > 10) return;
+      currentQuantity = newQty;
+      document.getElementById('input-quantity').value = currentQuantity;
+      document.getElementById('quantity-display').textContent = currentQuantity;
+      renderAdditionalParticipants();
+      updatePriceSummary();
+    }
+
+    function renderAdditionalParticipants() {
+      const container = document.getElementById('additional-participants');
+      container.innerHTML = '';
+
+      for (let i = 1; i < currentQuantity; i++) {
+        const isSatusehat = satusehatTypes.includes(currentEventType);
+        const isFunrun = currentEventType === 'funrun';
+
+        let html = '<div class="mt-8 pt-8 border-t border-slate-200 participant-section" id="participant-' + i + '">';
+        html += '<div class="flex items-center gap-3 mb-5">';
+        html += '<div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold">' + (i + 1) + '</div>';
+        html += '<h3 class="text-lg font-bold text-slate-800">Peserta ' + (i + 1) + '</h3>';
+        html += '</div>';
+        html += '<div class="space-y-5">';
+
+        // Nama Lengkap
+        html += '<div>';
+        html += '<label class="block text-sm font-bold text-slate-700 mb-2">Nama Lengkap</label>';
+        html += '<input type="text" name="participants[' + (i - 1) + '][nama_lengkap]" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">';
+        html += '</div>';
+
+        // Tanggal Lahir
+        html += '<div>';
+        html += '<label class="block text-sm font-bold text-slate-700 mb-2">Tanggal Lahir</label>';
+        html += '<input type="date" name="participants[' + (i - 1) + '][tanggal_lahir]" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">';
+        html += '</div>';
+
+        // SatuSehat fields
+        if (isSatusehat) {
+          html += '<div>';
+          html += '<label class="block text-sm font-bold text-slate-700 mb-2">Nama di SatuSehat SDMK</label>';
+          html += '<input type="text" name="participants[' + (i - 1) + '][nama_satusehat]" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">';
+          html += '</div>';
+        }
+
+        // Fun Run fields
+        if (isFunrun) {
+          html += '<div>';
+          html += '<label class="block text-sm font-bold text-slate-700 mb-2">Tipe Jersey</label>';
+          html += '<div class="flex gap-6">';
+          html += '<label class="flex items-center gap-2 cursor-pointer">';
+          html += '<input type="radio" name="participants[' + (i - 1) + '][jersey_type]" value="dewasa" required class="w-4 h-4 text-amber-600 border-slate-300 focus:ring-amber-400">';
+          html += '<span class="text-sm text-slate-700">Dewasa</span>';
+          html += '</label>';
+          html += '<label class="flex items-center gap-2 cursor-pointer">';
+          html += '<input type="radio" name="participants[' + (i - 1) + '][jersey_type]" value="anak" class="w-4 h-4 text-amber-600 border-slate-300 focus:ring-amber-400">';
+          html += '<span class="text-sm text-slate-700">Anak</span>';
+          html += '</label>';
+          html += '</div>';
+          html += '</div>';
+
+          html += '<div>';
+          html += '<label class="block text-sm font-bold text-slate-700 mb-2">Ukuran Jersey</label>';
+          html += '<select name="participants[' + (i - 1) + '][jersey_size]" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">';
+          html += '<option value="">Pilih ukuran</option>';
+          html += '<option value="S">S</option><option value="M">M</option><option value="L">L</option>';
+          html += '<option value="XL">XL</option><option value="XXL">XXL</option><option value="XXXL">XXXL</option>';
+          html += '</select>';
+          html += '</div>';
+        }
+
+        // Lembaga
+        html += '<div>';
+        html += '<label class="block text-sm font-bold text-slate-700 mb-2">Lembaga / Institusi</label>';
+        html += '<input type="text" name="participants[' + (i - 1) + '][lembaga]" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">';
+        html += '</div>';
+
+        html += '</div></div>';
+
+        container.insertAdjacentHTML('beforeend', html);
+      }
+    }
+
+    function updatePriceSummary() {
+      if (!currentPriceId) return;
+      const price = pricesData[currentPriceId];
+      if (!price) return;
+
+      const base = price.base_price * currentQuantity;
+      const service = Math.ceil(price.base_price * 0.05) * currentQuantity;
+      const transaction = Math.ceil(price.base_price * 0.05) * currentQuantity;
+      const total = price.display_price * currentQuantity;
+
+      const qtyLabel = currentQuantity > 1 ? '(' + currentQuantity + ' tiket)' : '';
+      document.getElementById('summary-qty-label').textContent = qtyLabel;
+      document.getElementById('summary-base').textContent = formatRupiah(base);
+      document.getElementById('summary-service').textContent = formatRupiah(service);
+      document.getElementById('summary-transaction').textContent = formatRupiah(transaction);
+      document.getElementById('summary-total').textContent = formatRupiah(total);
+      document.getElementById('price-summary').classList.remove('hidden');
+    }
+
     function selectEvent(priceId, eventType) {
+      currentPriceId = priceId;
+      currentEventType = eventType;
       document.getElementById('input-event-price-id').value = priceId;
       document.getElementById('registration-form').classList.remove('hidden');
 
       // Toggle field visibility based on event type
       const isSatusehat = satusehatTypes.includes(eventType);
-      document.getElementById('fields-satusehat').classList.toggle('hidden', !isSatusehat);
-      document.getElementById('fields-funrun').classList.toggle('hidden', eventType !== 'funrun');
+      document.getElementById('fields-satusehat-0').classList.toggle('hidden', !isSatusehat);
+      document.getElementById('fields-funrun-0').classList.toggle('hidden', eventType !== 'funrun');
 
-      // Toggle required attributes
-      document.querySelectorAll('#fields-satusehat input').forEach(function(input) {
+      // Toggle required attributes for participant 1
+      document.querySelectorAll('#fields-satusehat-0 input').forEach(function(input) {
         input.required = isSatusehat;
       });
-      document.querySelectorAll('#fields-funrun input, #fields-funrun select').forEach(function(input) {
+      document.querySelectorAll('#fields-funrun-0 input, #fields-funrun-0 select').forEach(function(input) {
         input.required = eventType === 'funrun';
       });
 
@@ -241,26 +377,15 @@
         btn.className = 'w-full py-3.5 rounded-xl font-bold text-sm transition-all bg-amber-50 text-amber-700 hover:bg-amber-100';
         btn.textContent = 'Pilih';
       });
-      const selectedBtn = document.querySelector('#card-' + priceId + ' button');
+      var selectedBtn = document.querySelector('#card-' + priceId + ' button');
       if (selectedBtn) {
         selectedBtn.className = 'w-full py-3.5 rounded-xl font-bold text-sm transition-all bg-amber-600 text-white shadow-lg';
         selectedBtn.textContent = 'Dipilih';
       }
 
-      // Update price summary
-      const price = pricesData[priceId];
-      if (price) {
-        const base = price.base_price;
-        const service = Math.ceil(base * 0.05);
-        const transaction = Math.ceil(base * 0.05);
-        const total = price.display_price;
-
-        document.getElementById('summary-base').textContent = formatRupiah(base);
-        document.getElementById('summary-service').textContent = formatRupiah(service);
-        document.getElementById('summary-transaction').textContent = formatRupiah(transaction);
-        document.getElementById('summary-total').textContent = formatRupiah(total);
-        document.getElementById('price-summary').classList.remove('hidden');
-      }
+      // Re-render additional participants for the new event type
+      renderAdditionalParticipants();
+      updatePriceSummary();
 
       // Smooth scroll to form
       document.getElementById('registration-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -269,7 +394,7 @@
     // Auto-select if selectedEvent is set
     @if($selectedEvent)
       document.addEventListener('DOMContentLoaded', function() {
-        const price = pricesData[{{ $selectedEvent }}];
+        var price = pricesData[{{ $selectedEvent }}];
         if (price) {
           selectEvent({{ $selectedEvent }}, price.event_code);
         }

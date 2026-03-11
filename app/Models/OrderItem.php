@@ -17,11 +17,18 @@ class OrderItem extends Model
         'event_label',
         'base_price',
         'display_price',
+        'participant_name',
+        'participant_tanggal_lahir',
+        'participant_lembaga',
+        'participant_nama_satusehat',
+        'participant_jersey_type',
+        'participant_jersey_size',
     ];
 
     protected $casts = [
         'base_price' => 'integer',
         'display_price' => 'integer',
+        'participant_tanggal_lahir' => 'date',
     ];
 
     public function order(): BelongsTo

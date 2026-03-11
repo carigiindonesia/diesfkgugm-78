@@ -22,8 +22,8 @@ class TicketService
                 'ticket_code' => $ticketCode,
                 'event_code' => $item->event_code,
                 'event_label' => $item->event_label,
-                'participant_name' => $order->nama_lengkap,
-                'participant_lembaga' => $order->lembaga,
+                'participant_name' => $item->participant_name ?? $order->nama_lengkap,
+                'participant_lembaga' => $item->participant_lembaga ?? $order->lembaga,
                 'category' => $order->category,
             ]);
         }
@@ -31,7 +31,7 @@ class TicketService
 
     public function generateBarcode(string $code): string
     {
-        $generator = new BarcodeGeneratorSVG();
+        $generator = new BarcodeGeneratorSVG;
 
         return $generator->getBarcode($code, $generator::TYPE_CODE_128, 2, 60);
     }

@@ -14,16 +14,16 @@ class XenditService
     public function __construct()
     {
         Configuration::setXenditKey(config('services.xendit.secret_key'));
-        $this->invoiceApi = new InvoiceApi();
+        $this->invoiceApi = new InvoiceApi;
     }
 
     public function createInvoice(Order $order): array
     {
-        $items = $order->items->map(fn ($item) => [
-            'name' => $item->event_label,
-            'quantity' => 1,
-            'price' => $item->display_price,
-        ])->toArray();
+        $items = $order->items->groupBy('event_code')->map(fn ($grouped) => [
+            'name' => $grouped->first()->event_label,
+            'quantity' => $grouped->count(),
+            'price' => $grouped->first()->display_price,
+        ])->values()->toArray();
 
         $request = new CreateInvoiceRequest([
             'external_id' => $order->order_number,
