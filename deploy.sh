@@ -11,6 +11,10 @@ export IMAGE_TAG="$IMAGE_TAG"
 # Export IMAGE_NAME from .env for docker-compose image resolution
 export IMAGE_NAME=$(grep '^IMAGE_NAME=' .env | cut -d'=' -f2)
 
+echo "==> Verifying .env..."
+echo "DB_HOST=$(grep '^DB_HOST=' .env | cut -d'=' -f2)"
+echo "IMAGE_NAME=$IMAGE_NAME"
+
 echo "==> Pulling latest images..."
 docker compose pull app worker
 
