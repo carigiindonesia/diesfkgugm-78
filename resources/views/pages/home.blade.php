@@ -1,0 +1,18 @@
+@extends('layouts.app')
+
+@section('content')
+  @include('components.navbar')
+  @include('components.hero')
+  @include('components.slider')
+  @include('components.event-cards')
+  @include('components.keynote-speakers')
+  @include('components.scientific-speakers')
+  @include('components.handson-instructors')
+  @include('components.schedule')
+  @include('components.pitch-competition')
+  @include('components.fun-run')
+  @include('components.venue')
+  @include('components.documents')
+  @include('components.articles')
+  @include('components.footer')
+@endsection
