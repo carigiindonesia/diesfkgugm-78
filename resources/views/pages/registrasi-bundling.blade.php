@@ -305,6 +305,18 @@
         html += '<input type="text" name="participants[' + (i - 1) + '][nama_satusehat]" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">';
         html += '</div>';
 
+        // Email SatuSehat
+        html += '<div>';
+        html += '<label class="block text-sm font-bold text-slate-700 mb-2">Email SatuSehat SDMK</label>';
+        html += '<input type="email" name="participants[' + (i - 1) + '][email_satusehat]" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">';
+        html += '</div>';
+
+        // WhatsApp SatuSehat
+        html += '<div>';
+        html += '<label class="block text-sm font-bold text-slate-700 mb-2">WhatsApp SatuSehat SDMK</label>';
+        html += '<input type="text" name="participants[' + (i - 1) + '][whatsapp_satusehat]" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">';
+        html += '</div>';
+
         // Lembaga
         html += '<div>';
         html += '<label class="block text-sm font-bold text-slate-700 mb-2">Lembaga / Institusi</label>';

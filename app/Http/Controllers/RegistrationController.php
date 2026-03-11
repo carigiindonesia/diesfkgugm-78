@@ -148,6 +148,8 @@ class RegistrationController extends Controller
 
         if ($formType === 'satusehat' || $formType === 'mixed') {
             $rules['participants.*.nama_satusehat'] = 'required|string|max:255';
+            $rules['participants.*.email_satusehat'] = 'required|email|max:255';
+            $rules['participants.*.whatsapp_satusehat'] = 'required|string|max:20';
         }
 
         if ($formType === 'funrun') {
