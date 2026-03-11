@@ -1,0 +1,13 @@
+{
+    auto_https off
+    http_port 8081
+    frankenphp
+}
+
+:8081 {
+    root * /var/www/html/public
+    encode zstd gzip
+
+    file_server
+    php_server
+}
