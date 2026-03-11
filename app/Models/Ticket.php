@@ -60,6 +60,6 @@ class Ticket extends Model
             ? ((int) substr($lastTicket->ticket_code, -5)) + 1
             : 1;
 
-        return $prefix . str_pad($nextNum, 5, '0', STR_PAD_LEFT);
+        return $prefix.str_pad($nextNum, 5, '0', STR_PAD_LEFT);
     }
 }

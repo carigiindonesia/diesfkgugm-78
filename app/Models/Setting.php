@@ -24,6 +24,7 @@ class Setting extends Model
     {
         return Cache::rememberForever("setting.{$key}", function () use ($key, $default) {
             $setting = static::where('key', $key)->first();
+
             return $setting?->value ?? $default;
         });
     }

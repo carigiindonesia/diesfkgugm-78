@@ -22,7 +22,7 @@ class RegistrationStatsOverview extends BaseWidget
             Stat::make('Pesanan Lunas', $paidOrders->count())
                 ->icon('heroicon-o-check-circle')
                 ->color('success'),
-            Stat::make('Total Pendapatan', 'Rp ' . number_format($totalRevenue, 0, ',', '.'))
+            Stat::make('Total Pendapatan', 'Rp '.number_format($totalRevenue, 0, ',', '.'))
                 ->icon('heroicon-o-banknotes')
                 ->color('warning'),
             Stat::make('Pesanan Pending', $pendingCount)

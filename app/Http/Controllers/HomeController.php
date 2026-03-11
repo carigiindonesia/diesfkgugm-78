@@ -6,7 +6,6 @@ use App\Models\Article;
 use App\Models\Document;
 use App\Models\Setting;
 use App\Models\Slider;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
