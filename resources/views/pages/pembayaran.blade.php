@@ -57,7 +57,7 @@
             @foreach($order->items as $item)
               <div class="flex justify-between items-center text-sm">
                 <span class="text-slate-600">{{ $item->event_label }}</span>
-                <span class="font-bold text-slate-800">Rp {{ number_format($item->price, 0, ',', '.') }}</span>
+                <span class="font-bold text-slate-800">Rp {{ number_format($item->display_price, 0, ',', '.') }}</span>
               </div>
             @endforeach
           </div>
@@ -65,23 +65,11 @@
 
         <!-- Price Summary -->
         <div class="border-t border-slate-100 pt-6 space-y-2 text-sm">
-          <div class="flex justify-between text-slate-500">
-            <span>Subtotal</span>
-            <span>Rp {{ number_format($order->subtotal, 0, ',', '.') }}</span>
-          </div>
-          <div class="flex justify-between text-slate-500">
-            <span>Biaya Layanan</span>
-            <span>Rp {{ number_format($order->service_fee, 0, ',', '.') }}</span>
-          </div>
-          <div class="flex justify-between text-slate-500">
-            <span>Biaya Transaksi</span>
-            <span>Rp {{ number_format($order->transaction_fee, 0, ',', '.') }}</span>
-          </div>
-          <hr class="my-3 border-slate-100">
           <div class="flex justify-between font-black text-lg text-amber-700">
             <span>Total</span>
-            <span>Rp {{ number_format($order->total, 0, ',', '.') }}</span>
+            <span>Rp {{ number_format($order->total_amount, 0, ',', '.') }}</span>
           </div>
+          <p class="text-xs text-slate-400 mt-2">Harga sudah termasuk PPN 11%, biaya layanan & transaksi digital</p>
         </div>
       </div>
 
@@ -97,7 +85,7 @@
                 <strong id="countdown-target">{{ $order->expired_at->format('d M Y, H:i') }} WIB</strong>
               </p>
               <div id="countdown" class="text-2xl font-black text-yellow-800 mb-6 font-mono"></div>
-              <a href="{{ $order->invoice_url }}" target="_blank" rel="noreferrer"
+              <a href="{{ $order->xendit_invoice_url }}" target="_blank" rel="noreferrer"
                  class="inline-flex items-center gap-2 bg-yellow-500 text-white px-8 py-3.5 rounded-xl font-bold text-sm hover:bg-yellow-600 transition-all shadow-md">
                 <i data-lucide="external-link" class="w-4 h-4"></i>
                 Bayar Sekarang

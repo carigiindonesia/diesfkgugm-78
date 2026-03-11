@@ -35,7 +35,7 @@ class EventPrice extends Model
     protected static function booted(): void
     {
         static::saving(function (EventPrice $price) {
-            $price->display_price = $price->base_price + (int) round($price->base_price * 0.10);
+            $price->display_price = (int) round($price->base_price * 1.10 * 1.11);
         });
     }
 
