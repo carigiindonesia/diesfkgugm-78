@@ -14,8 +14,13 @@ export IMAGE_NAME=$(grep '^IMAGE_NAME=' .env | cut -d'=' -f2)
 echo "==> Pulling latest images..."
 docker compose pull app worker
 
+echo "==> Ensuring MySQL is running and healthy..."
+docker compose up -d mysql
+echo "==> Waiting for MySQL to be ready..."
+timeout 120 bash -c 'until docker compose exec mysql mysqladmin ping -h localhost --silent 2>/dev/null; do sleep 3; done'
+
 echo "==> Stopping worker to drain queue..."
-docker compose stop worker
+docker compose stop worker 2>/dev/null || true
 
 echo "==> Starting new app container..."
 docker compose up -d --no-deps app
