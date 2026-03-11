@@ -27,7 +27,7 @@ class PitchSubmission extends Model
 
             $lastSubmission = static::orderByDesc('id')->first();
             $nextNum = $lastSubmission ? $lastSubmission->id + 1 : 1;
-            $submission->submission_number = '3MPC-' . str_pad($nextNum, 4, '0', STR_PAD_LEFT);
+            $submission->submission_number = '3MPC-'.str_pad($nextNum, 4, '0', STR_PAD_LEFT);
         });
     }
 

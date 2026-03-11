@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\OrderStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,6 +23,7 @@ class Order extends Model
         'category',
         'jersey_type',
         'jersey_size',
+        'quantity',
         'subtotal',
         'fee_amount',
         'total_amount',
@@ -40,6 +40,7 @@ class Order extends Model
 
     protected $casts = [
         'tanggal_lahir' => 'date',
+        'quantity' => 'integer',
         'is_bundle' => 'boolean',
         'email_sent' => 'boolean',
         'paid_at' => 'datetime',
@@ -53,7 +54,7 @@ class Order extends Model
     {
         static::creating(function (Order $order) {
             $order->uuid = (string) Str::uuid();
-            $order->order_number = 'DN78-' . now()->format('Ymd') . '-' . strtoupper(Str::random(4));
+            $order->order_number = 'DN78-'.now()->format('Ymd').'-'.strtoupper(Str::random(4));
         });
     }
 
@@ -89,6 +90,6 @@ class Order extends Model
 
     public function getFormattedTotalAttribute(): string
     {
-        return 'Rp ' . number_format($this->total_amount, 0, ',', '.');
+        return 'Rp '.number_format($this->total_amount, 0, ',', '.');
     }
 }

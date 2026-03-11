@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\EventType;
-use App\Enums\ParticipantCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -63,11 +61,11 @@ class EventPrice extends Model
 
     public function getFormattedDisplayPriceAttribute(): string
     {
-        return 'Rp ' . number_format($this->display_price, 0, ',', '.');
+        return 'Rp '.number_format($this->display_price, 0, ',', '.');
     }
 
     public function getFormattedBasePriceAttribute(): string
     {
-        return 'Rp ' . number_format($this->base_price, 0, ',', '.');
+        return 'Rp '.number_format($this->base_price, 0, ',', '.');
     }
 }
