@@ -21,7 +21,7 @@
                 <ul class="text-sm space-y-1">
                   <li>Bulaksumur Ballroom (Simposium &amp; Scientific Session)</li>
                   <li>Sekip Ballroom (Scientific Session paralel)</li>
-                  <li>Nusantara Room (HO 1 &amp; HO 4)</li>
+                  <li>Nusantara Room (HO 1)</li>
                   <li>Grafika Room (HO 2 &amp; HO 5)</li>
                   <li>Wanagama Room (HO 3 &amp; HO 6)</li>
                   <li>Yustisia Room (HO 7)</li>
