@@ -9,7 +9,7 @@ Dies Natalis FKG UGM ke-78 — an event management web application for the Facul
 - **Framework**: Laravel 11 (PHP ^8.2)
 - **Admin Panel**: Filament v3.3
 - **Payment Gateway**: Xendit (xendit-php v7)
-- **Database**: SQLite (default), MySQL supported
+- **Database**: MySQL (default), SQLite supported
 - **Frontend**: Blade templates, Vite, Tailwind CSS
 - **Queue**: Database driver
 - **Session/Cache**: Database driver
@@ -22,18 +22,19 @@ app/
 ├── Enums/              # EventType, OrderStatus, ParticipantCategory
 ├── Filament/           # Admin panel resources, pages, widgets
 │   ├── Pages/          # ManageSettings
-│   ├── Resources/      # Article, Document, EventPrice, Order, PitchSubmission, Slider, Ticket
+│   ├── Resources/      # Article, Document, EventPrice, Order, PitchSubmission, Slider, Speaker, Ticket
 │   └── Widgets/        # RegistrationStatsOverview
 ├── Http/Controllers/   # Home, Article, Registration, Payment, Ticket, PitchSubmission, Webhook
 ├── Jobs/               # SendTicketEmail (queued, 3 retries)
 ├── Mail/               # TicketConfirmation mailable
-├── Models/             # Article, Document, EventPrice, Order, OrderItem, PitchSubmission, Setting, Slider, Ticket, User
+├── Models/             # Article, Document, EventPrice, Order, OrderItem, PitchSubmission, Setting, Slider, Speaker, Ticket, User
 ├── Providers/          # AppServiceProvider, Filament/AdminPanelProvider
 └── Services/           # PricingService, TicketService, XenditService
 
 database/
-├── migrations/         # 13 migration files
-└── seeders/            # DatabaseSeeder, SettingsSeeder, EventPriceSeeder
+├── factories/          # UserFactory
+├── migrations/         # 15 migration files
+└── seeders/            # DatabaseSeeder, SettingsSeeder, EventPriceSeeder, SpeakerSeeder
 
 resources/views/
 ├── components/         # Blade components (hero, navbar, footer, event-cards, etc.)
@@ -49,6 +50,11 @@ routes/
 tests/
 ├── Feature/            # Feature tests
 └── Unit/               # Unit tests
+
+docker/                   # Docker configuration files
+Dockerfile                # Container build definition
+docker-compose.yml        # Production compose
+docker-compose.dev.yml    # Development compose
 ```
 
 ## Key Commands
@@ -85,6 +91,10 @@ php artisan queue:work                 # Process queued jobs (email sending)
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
+
+# Docker
+docker-compose up -d                   # Start production containers
+docker-compose -f docker-compose.dev.yml up -d  # Start dev containers
 ```
 
 ## Domain Concepts
@@ -109,8 +119,8 @@ Format: `DN78-YYYYMMDD-XXXX` (auto-generated, sequential per day)
 Format: `DN78-{EVENT_SHORT_CODE}-{CATEGORY_SHORT_CODE}-{SEQUENTIAL_NUMBER}` (e.g., DN78-SIM-U-00001)
 
 ### Pricing
-- Base prices stored in `event_prices` table
-- Display price = base_price × 1.10 (10% fee via `PricingService`)
+- Base prices stored in `event_prices` table (supports `event_variant`, `is_bundle`, `bundle_code`, `bundle_label` fields)
+- Display price = base_price × 1.10 × 1.11 (10% platform fee + 11% PPN tax via `PricingService`)
 - Bundles have their own pricing with `bundle_events` JSON field
 
 ### Order Statuses
@@ -136,7 +146,8 @@ Pending → Paid/Expired/Failed/Refunded (defined in `OrderStatus` enum with Ind
 - Color: Amber
 - Admin user: `admin@diesfkgugm.id` (seeded)
 - Resources auto-discovered from `app/Filament/Resources`
-- Order and Ticket resources are view-only; Article, EventPrice, Document, Slider have full CRUD
+- Order and Ticket resources are view-only; Article, EventPrice, Document, Slider, Speaker have full CRUD
+- Navigation groups used for organization (e.g., Speaker in 'Konten' group)
 
 ### Naming Conventions
 - **Routes**: Indonesian naming (registrasi, pembayaran, tiket, artikel)
@@ -151,10 +162,10 @@ Pending → Paid/Expired/Failed/Refunded (defined in `OrderStatus` enum with Ind
 
 ## Environment Variables
 
-Key variables (see `.env.example`):
-- `XENDIT_SECRET_KEY` — Xendit API secret key (required for payments)
-- `XENDIT_CALLBACK_TOKEN` — Webhook validation token (required for webhooks)
-- `DB_CONNECTION` — `sqlite` (default) or `mysql`
+Key variables (see `.env.example` and `config/services.php`):
+- `XENDIT_SECRET_KEY` — Xendit API secret key (required for payments; not in `.env.example`, must be added manually)
+- `XENDIT_CALLBACK_TOKEN` — Webhook validation token (required for webhooks; not in `.env.example`, must be added manually)
+- `DB_CONNECTION` — `mysql` (default) or `sqlite`
 - `QUEUE_CONNECTION` — `database` (required for email sending)
 - `MAIL_MAILER` — Configure for production email delivery
 
