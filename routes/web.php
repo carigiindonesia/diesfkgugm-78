@@ -27,8 +27,10 @@ Route::post('/webhook/xendit', [WebhookController::class, 'handleXendit'])->name
 Route::get('/tiket/{ticket:ticket_code}', [TicketController::class, 'show'])->name('tiket.show');
 Route::get('/tiket/{ticket:ticket_code}/verify', [TicketController::class, 'verify'])->name('tiket.verify');
 Route::get('/tiket/{ticket:ticket_code}/download', [TicketController::class, 'download'])->name('tiket.download');
+Route::get('/tiket/order/{order:uuid}/download', [TicketController::class, 'downloadOrder'])->name('tiket.download-order');
 
 // 3MPC
 Route::get('/3mpc/submit', [PitchSubmissionController::class, 'create'])->name('3mpc.create');
 Route::post('/3mpc/submit', [PitchSubmissionController::class, 'store'])->name('3mpc.store')->middleware('throttle:5,1');
 Route::get('/3mpc/submission/{pitchSubmission:uuid}', [PitchSubmissionController::class, 'show'])->name('3mpc.show');
+Route::get('/3mpc/submission/{pitchSubmission:uuid}/download', [PitchSubmissionController::class, 'downloadTicket'])->name('3mpc.download-ticket');

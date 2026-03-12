@@ -13,6 +13,7 @@ class PitchSubmission extends Model
     protected $fillable = [
         'authors',
         'lembaga',
+        'kategori',
         'judul',
         'abstract_link',
         'video_link',
