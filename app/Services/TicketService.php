@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Order;
 use App\Models\Ticket;
+use Picqer\Barcode\BarcodeGeneratorPNG;
 use Picqer\Barcode\BarcodeGeneratorSVG;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -44,5 +45,25 @@ class TicketService
             ->size(200)
             ->errorCorrection('H')
             ->generate($verifyUrl);
+    }
+
+    public function generateBarcodeForPdf(string $code): string
+    {
+        $generator = new BarcodeGeneratorPNG;
+        $png = $generator->getBarcode($code, $generator::TYPE_CODE_128, 2, 60);
+        $base64 = base64_encode($png);
+
+        return '<img src="data:image/png;base64,'.$base64.'" style="max-width:200px;height:50px;">';
+    }
+
+    public function generateQrCodeForPdf(string $url): string
+    {
+        $svg = QrCode::format('svg')
+            ->size(200)
+            ->errorCorrection('H')
+            ->generate($url);
+        $base64 = base64_encode($svg);
+
+        return '<img src="data:image/svg+xml;base64,'.$base64.'" style="width:100px;height:100px;">';
     }
 }
