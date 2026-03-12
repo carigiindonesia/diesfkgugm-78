@@ -19,10 +19,10 @@
       </div>
 
       <!-- Category Tabs -->
-      <div class="flex justify-center mb-10 fade-in">
+      <div class="flex justify-center mb-6 fade-in">
         <div class="inline-flex bg-white rounded-2xl p-1.5 shadow-sm border border-slate-100">
           @foreach($categories as $cat)
-            <a href="/registrasi?kategori={{ $cat->value }}"
+            <a href="/registrasi?kategori={{ $cat->value }}{{ $selectedEventCode ? '&event=' . $selectedEventCode : '' }}"
                class="px-6 py-3 rounded-xl text-sm font-bold transition-all {{ $category === $cat->value ? 'bg-amber-500 text-white shadow-md' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50' }}">
               {{ $cat->label() }}
             </a>
@@ -30,28 +30,62 @@
         </div>
       </div>
 
-      <!-- Event Pricing Cards -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 fade-in">
-        @foreach($prices as $price)
-          <div class="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all p-8 flex flex-col"
-               id="card-{{ $price->id }}">
-            <div class="flex-1">
-              <h3 class="text-xl font-black text-slate-800 mb-2">{{ $price->event_label }}</h3>
-              @if($price->event_description)
-                <div class="text-xs text-slate-500 mb-3 leading-relaxed whitespace-pre-line">{{ $price->event_description }}</div>
-              @endif
-              <p class="text-3xl font-black text-amber-600 mb-1">
-                Rp {{ number_format($price->display_price, 0, ',', '.') }}
-              </p>
-              <p class="text-xs text-slate-400 mb-6">Sudah termasuk PPN 11%, biaya layanan & transaksi digital</p>
-            </div>
-            <button onclick="selectEvent({{ $price->id }}, '{{ $price->event_code }}')"
-                    class="w-full py-3.5 rounded-xl font-bold text-sm transition-all {{ ($selectedEvent && $selectedEvent == $price->id) ? 'bg-amber-600 text-white shadow-lg' : 'bg-amber-50 text-amber-700 hover:bg-amber-100' }}">
-              {{ ($selectedEvent && $selectedEvent == $price->id) ? 'Dipilih' : 'Pilih' }}
-            </button>
-          </div>
-        @endforeach
+      <!-- Event Type Filter -->
+      <div class="flex justify-center mb-10 fade-in">
+        <div class="inline-flex flex-wrap justify-center gap-2">
+          <a href="/registrasi?kategori={{ $category }}"
+             class="px-4 py-2 rounded-xl text-xs font-bold transition-all border {{ !$selectedEventCode ? 'bg-slate-800 text-white border-slate-800 shadow-md' : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300 hover:text-slate-700' }}">
+            Semua Kegiatan
+          </a>
+          @foreach($eventTypes as $eventType)
+            <a href="/registrasi?kategori={{ $category }}&event={{ $eventType->value }}"
+               class="px-4 py-2 rounded-xl text-xs font-bold transition-all border {{ $selectedEventCode === $eventType->value ? 'bg-slate-800 text-white border-slate-800 shadow-md' : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300 hover:text-slate-700' }}">
+              {{ $eventType->label() }}
+            </a>
+          @endforeach
+        </div>
       </div>
+
+      <!-- Event Pricing Cards -->
+      @php
+        $filteredPrices = $selectedEventCode
+            ? $prices->where('event_code', $selectedEventCode)
+            : $prices;
+      @endphp
+
+      @if($filteredPrices->isEmpty())
+        <div class="text-center py-12 mb-8 fade-in">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-slate-100 rounded-2xl mb-4">
+            <i data-lucide="search-x" class="w-8 h-8 text-slate-400"></i>
+          </div>
+          <p class="text-slate-500 text-sm">Tidak ada kegiatan yang tersedia untuk filter ini.</p>
+          <a href="/registrasi?kategori={{ $category }}" class="inline-flex items-center gap-1 text-amber-600 font-bold text-sm mt-3 hover:text-amber-700">
+            Lihat semua kegiatan <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      @else
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 fade-in">
+          @foreach($filteredPrices as $price)
+            <div class="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all p-8 flex flex-col"
+                 id="card-{{ $price->id }}">
+              <div class="flex-1">
+                <h3 class="text-xl font-black text-slate-800 mb-2">{{ $price->event_label }}</h3>
+                @if($price->event_description)
+                  <div class="text-xs text-slate-500 mb-3 leading-relaxed whitespace-pre-line">{{ $price->event_description }}</div>
+                @endif
+                <p class="text-3xl font-black text-amber-600 mb-1">
+                  Rp {{ number_format($price->display_price, 0, ',', '.') }}
+                </p>
+                <p class="text-xs text-slate-400 mb-6">Sudah termasuk PPN 11%, biaya layanan & transaksi digital</p>
+              </div>
+              <button onclick="selectEvent({{ $price->id }}, '{{ $price->event_code }}')"
+                      class="w-full py-3.5 rounded-xl font-bold text-sm transition-all bg-amber-50 text-amber-700 hover:bg-amber-100">
+                Pilih
+              </button>
+            </div>
+          @endforeach
+        </div>
+      @endif
 
       <!-- Bundling Link -->
       <div class="text-center mb-12 fade-in">
@@ -79,7 +113,7 @@
 
           <form action="/registrasi" method="POST" id="reg-form">
             @csrf
-            <input type="hidden" name="event_price_id" id="input-event-price-id" value="{{ old('event_price_id', $selectedEvent) }}">
+            <input type="hidden" name="event_price_id" id="input-event-price-id" value="{{ old('event_price_id') }}">
             <input type="hidden" name="category" value="{{ $category }}">
             <input type="hidden" name="quantity" id="input-quantity" value="{{ old('quantity', 1) }}">
 
@@ -386,13 +420,12 @@
       document.getElementById('registration-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // Auto-select if selectedEvent is set
-    @if($selectedEvent)
+    // Auto-select if only one event card is visible after filtering
+    @if($selectedEventCode && $filteredPrices->count() === 1)
       document.addEventListener('DOMContentLoaded', function() {
-        var price = pricesData[{{ $selectedEvent }}];
-        if (price) {
-          selectEvent({{ $selectedEvent }}, price.event_code);
-        }
+        var priceId = {{ $filteredPrices->first()->id }};
+        var eventCode = '{{ $filteredPrices->first()->event_code }}';
+        selectEvent(priceId, eventCode);
       });
     @endif
   </script>
