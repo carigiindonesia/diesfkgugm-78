@@ -216,7 +216,7 @@
       margin-bottom: 10px;
     }
 
-    .barcode-container svg {
+    .barcode-container img {
       max-width: 200px;
       height: 50px;
     }
@@ -229,7 +229,7 @@
       background: #ffffff;
     }
 
-    .qr-container svg {
+    .qr-container img {
       width: 100px;
       height: 100px;
     }

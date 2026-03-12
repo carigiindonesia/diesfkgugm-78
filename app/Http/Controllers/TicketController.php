@@ -43,8 +43,9 @@ class TicketController extends Controller
         abort_unless($ticket->order->isPaid(), 404);
 
         $ticketService = app(TicketService::class);
-        $barcode = $ticketService->generateBarcode($ticket->ticket_code);
-        $qrCode = $ticketService->generateQrCode($ticket);
+        $barcode = $ticketService->generateBarcodeForPdf($ticket->ticket_code);
+        $verifyUrl = route('tiket.verify', $ticket->ticket_code);
+        $qrCode = $ticketService->generateQrCodeForPdf($verifyUrl);
 
         $ticketsData = [
             $this->buildTicketData($ticket, $barcode, $qrCode),
@@ -65,8 +66,9 @@ class TicketController extends Controller
 
         $ticketsData = [];
         foreach ($order->tickets as $ticket) {
-            $barcode = $ticketService->generateBarcode($ticket->ticket_code);
-            $qrCode = $ticketService->generateQrCode($ticket);
+            $barcode = $ticketService->generateBarcodeForPdf($ticket->ticket_code);
+            $verifyUrl = route('tiket.verify', $ticket->ticket_code);
+            $qrCode = $ticketService->generateQrCodeForPdf($verifyUrl);
             $ticketsData[] = $this->buildTicketData($ticket, $barcode, $qrCode);
         }
 

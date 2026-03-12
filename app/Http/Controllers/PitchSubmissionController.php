@@ -6,7 +6,6 @@ use App\Models\PitchSubmission;
 use App\Services\TicketService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PitchSubmissionController extends Controller
 {
@@ -56,8 +55,9 @@ class PitchSubmissionController extends Controller
     {
         $ticketService = app(TicketService::class);
 
-        $barcode = $ticketService->generateBarcode($pitchSubmission->submission_number);
-        $qrCode = $this->generateSubmissionQrCode($pitchSubmission);
+        $barcode = $ticketService->generateBarcodeForPdf($pitchSubmission->submission_number);
+        $verifyUrl = route('3mpc.show', $pitchSubmission->uuid);
+        $qrCode = $ticketService->generateQrCodeForPdf($verifyUrl);
 
         $pdf = Pdf::loadView('pages.3mpc-ticket-pdf', [
             'submission' => $pitchSubmission,
@@ -66,15 +66,5 @@ class PitchSubmissionController extends Controller
         ])->setPaper('a5', 'portrait');
 
         return $pdf->download("bukti-submission-{$pitchSubmission->submission_number}.pdf");
-    }
-
-    private function generateSubmissionQrCode(PitchSubmission $submission): string
-    {
-        $verifyUrl = route('3mpc.show', $submission->uuid);
-
-        return QrCode::format('svg')
-            ->size(200)
-            ->errorCorrection('H')
-            ->generate($verifyUrl);
     }
 }
