@@ -7,7 +7,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 fade-in">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary-50 text-primary-600 rounded-full text-xs font-bold mb-4 tracking-widest uppercase border border-primary-100">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Keynote &amp; Main Speakers
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Main Speakers
         </div>
         <h2 class="text-3xl md:text-5xl font-black text-slate-900">Expert Panel</h2>
         <p class="text-slate-500 mt-4 max-w-2xl mx-auto">Narasumber ahli internasional dan nasional yang membawakan topik utama simposium.</p>
