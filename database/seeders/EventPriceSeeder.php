@@ -22,21 +22,21 @@ class EventPriceSeeder extends Seeder
             ['alumni', 'handson', 'ho3', 'HO 3 — drg. Pribadi Santosa, M.S., Sp.KG, Subsp.KR(K)', 'Secrets of Successful Class II Restorations (Disponsori oleh Revoden Asia)', 1500000],
             ['alumni', 'handson', 'ho5', 'HO 5 — drg. Rifqie Al Haris', 'AI-Driven Dentistry: Education, Innovation, and Business (Disponsori oleh Stoothdy - Kortugi)', 1500000],
             ['alumni', 'handson', 'ho6', 'HO 6 — drg. Anrizandy Narwidina, MDSc, Sp.KGA, Ph.D', 'Basic Clinical Assessment for Early Detection of Orofacial Functional and Airway Indicators in Children (Disponsori oleh Carigi Indonesia)', 1500000],
-            ['alumni', 'handson', 'ho7', 'HO 7 — Dari Klinik ke Manuskrip Bereputasi', 'Dari Klinik ke Manuskrip Bereputasi, Solusi bagi Residen Menjawab Tuntutan Publikasi', 1500000],
+            ['alumni', 'handson', 'ho7', 'HO 7 — Dr. drg. Bramasto Purbo Sejati, Sp.B.M.Mf.,Subsp.Tr.Mf.S.Tm. & Dr. drg. Ananto Ali Alhasyimi, MDSc, Sp.Ort, Subsp.DDTK(K)', 'Dari Klinik ke Manuskrip Bereputasi, Solusi bagi Residen Menjawab Tuntutan Publikasi', 1500000],
 
             ['civitas', 'handson', 'ho1', 'HO 1 — drg. Ryant Ganda S., Sp.B.M.Mf', 'Basic Digital Implantology: Step by Step from Planning to Guide Fabrication', 1500000],
             ['civitas', 'handson', 'ho2', 'HO 2 — drg. Rahmat Hidayat, Sp.Pros', 'Mastering Suction Dentures: Hands-On Techniques for Maximum Retention and Stabilization', 1500000],
             ['civitas', 'handson', 'ho3', 'HO 3 — drg. Pribadi Santosa, M.S., Sp.KG, Subsp.KR(K)', 'Secrets of Successful Class II Restorations (Disponsori oleh Revoden Asia)', 1500000],
             ['civitas', 'handson', 'ho5', 'HO 5 — drg. Rifqie Al Haris', 'AI-Driven Dentistry: Education, Innovation, and Business (Disponsori oleh Stoothdy - Kortugi)', 1500000],
             ['civitas', 'handson', 'ho6', 'HO 6 — drg. Anrizandy Narwidina, MDSc, Sp.KGA, Ph.D', 'Basic Clinical Assessment for Early Detection of Orofacial Functional and Airway Indicators in Children (Disponsori oleh Carigi Indonesia)', 1500000],
-            ['civitas', 'handson', 'ho7', 'HO 7 — Dari Klinik ke Manuskrip Bereputasi', 'Dari Klinik ke Manuskrip Bereputasi, Solusi bagi Residen Menjawab Tuntutan Publikasi', 1500000],
+            ['civitas', 'handson', 'ho7', 'HO 7 — Dr. drg. Bramasto Purbo Sejati, Sp.B.M.Mf.,Subsp.Tr.Mf.S.Tm. & Dr. drg. Ananto Ali Alhasyimi, MDSc, Sp.Ort, Subsp.DDTK(K)', 'Dari Klinik ke Manuskrip Bereputasi, Solusi bagi Residen Menjawab Tuntutan Publikasi', 1500000],
 
             ['umum', 'handson', 'ho1', 'HO 1 — drg. Ryant Ganda S., Sp.B.M.Mf', 'Basic Digital Implantology: Step by Step from Planning to Guide Fabrication', 1500000],
             ['umum', 'handson', 'ho2', 'HO 2 — drg. Rahmat Hidayat, Sp.Pros', 'Mastering Suction Dentures: Hands-On Techniques for Maximum Retention and Stabilization', 1500000],
             ['umum', 'handson', 'ho3', 'HO 3 — drg. Pribadi Santosa, M.S., Sp.KG, Subsp.KR(K)', 'Secrets of Successful Class II Restorations (Disponsori oleh Revoden Asia)', 1500000],
             ['umum', 'handson', 'ho5', 'HO 5 — drg. Rifqie Al Haris', 'AI-Driven Dentistry: Education, Innovation, and Business (Disponsori oleh Stoothdy - Kortugi)', 1500000],
             ['umum', 'handson', 'ho6', 'HO 6 — drg. Anrizandy Narwidina, MDSc, Sp.KGA, Ph.D', 'Basic Clinical Assessment for Early Detection of Orofacial Functional and Airway Indicators in Children (Disponsori oleh Carigi Indonesia)', 1500000],
-            ['umum', 'handson', 'ho7', 'HO 7 — Dari Klinik ke Manuskrip Bereputasi', 'Dari Klinik ke Manuskrip Bereputasi, Solusi bagi Residen Menjawab Tuntutan Publikasi', 1500000],
+            ['umum', 'handson', 'ho7', 'HO 7 — Dr. drg. Bramasto Purbo Sejati, Sp.B.M.Mf.,Subsp.Tr.Mf.S.Tm. & Dr. drg. Ananto Ali Alhasyimi, MDSc, Sp.Ort, Subsp.DDTK(K)', 'Dari Klinik ke Manuskrip Bereputasi, Solusi bagi Residen Menjawab Tuntutan Publikasi', 1500000],
 
             // Fun Run (5K and 3K, same price)
             ['alumni', 'funrun', '5k', 'Fun Run 5K', "Sudah termasuk:\n• Running Jersey\n• Finisher Medal\n• Snack and Refreshment\n• Doorprize", 350000],
