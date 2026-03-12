@@ -17,8 +17,9 @@
             Jl. Denta No.1, Sekip Utara, Yogyakarta
           </p>
           <p class="text-white/30 text-sm">
-            info@diesfkgugm.id<br/>
-            (0274) 515307
+            Registrations Support and Helpdesk<br/>
+            Carigi Indonesia<br/>
+            <a href="https://wa.me/6285147686127" target="_blank" class="hover:text-white transition-colors">085147686127</a>
           </p>
         </div>
 
@@ -49,7 +50,8 @@
         <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
           <h5 class="font-black mb-3 text-lg">Sponsorship</h5>
           <p class="text-sm text-white/40 mb-6 leading-relaxed">Bergabunglah bersama kami dalam mendukung transformasi kesehatan mulut nasional.</p>
-          <a href="mailto:info@diesfkgugm.id" class="block w-full bg-primary-600 hover:bg-primary-700 py-3.5 rounded-xl font-black text-center transition-colors text-sm shadow-lg">Hubungi Kami</a>
+          <a href="https://wa.me/6281219543644" target="_blank" class="block w-full bg-primary-600 hover:bg-primary-700 py-3.5 rounded-xl font-black text-center transition-colors text-sm shadow-lg">Hubungi Kami</a>
+          <p class="text-xs text-white/30 mt-3 text-center">drg. Muhammad Reza Pahlevi, Ph.D</p>
         </div>
       </div>
 
