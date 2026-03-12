@@ -11,8 +11,8 @@ class SpeakerSeeder extends Seeder
     {
         $speakers = [
             // Keynote Speakers
-            ['slug' => 'norliza-ibrahim', 'name' => 'Prof. Dr. Norliza binti Ibrahim', 'title' => 'Keynote Speaker', 'topic' => null, 'section' => 'keynote', 'initials' => 'NI', 'sort_order' => 1],
-            ['slug' => 'matana-kettratad', 'name' => 'Dr. Matana Kettratad-Pruksapong', 'title' => 'DDS, Ph.D., FRCDT — Keynote Speaker', 'topic' => null, 'section' => 'keynote', 'initials' => 'MK', 'sort_order' => 2],
+            ['slug' => 'norliza-ibrahim', 'name' => 'Prof. Dr. Norliza binti Ibrahim', 'title' => 'Main Speaker', 'topic' => null, 'section' => 'keynote', 'initials' => 'NI', 'sort_order' => 1],
+            ['slug' => 'matana-kettratad', 'name' => 'Dr. Matana Kettratad-Pruksapong', 'title' => 'Main Speaker', 'topic' => null, 'section' => 'keynote', 'initials' => 'MK', 'sort_order' => 2],
             ['slug' => 'rahmat-hidayat', 'name' => 'drg. Rahmat Hidayat, Sp.Pros', 'title' => 'Main Speaker', 'topic' => 'Chairside Digital Workflow for Crown and Fixed Dental Prothesis Fabrication', 'section' => 'keynote', 'initials' => 'RH', 'sort_order' => 3],
             ['slug' => 'ryant-ganda', 'name' => 'drg. Ryant Ganda S., Sp.B.M.Mf', 'title' => 'Main Speaker', 'topic' => 'Basic Digital Implantology: Step by Step from Planning to Guide Fabrication', 'section' => 'keynote', 'initials' => 'RG', 'sort_order' => 4],
 

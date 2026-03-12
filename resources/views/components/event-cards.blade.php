@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 fade-in">
         <p class="text-primary-600 font-bold text-sm tracking-[0.2em] uppercase mb-3">Rangkaian Acara</p>
-        <h2 class="text-3xl md:text-5xl font-black text-slate-900">5 Kegiatan, 3 Hari</h2>
+        <h2 class="text-3xl md:text-5xl font-black text-slate-900">5 Kegiatan, 4 Hari</h2>
         <p class="text-slate-500 mt-4 max-w-2xl mx-auto">Rangkaian kegiatan ilmiah dan kemeriahan Dies Natalis ke-78 Fakultas Kedokteran Gigi UGM.</p>
       </div>
 
@@ -68,7 +68,7 @@
           <h4 class="text-xl font-black text-slate-800 mb-2">Pengabdian Masyarakat</h4>
           <p class="text-slate-500 text-sm mb-4 leading-relaxed">Kegiatan pengabdian kepada masyarakat dalam rangka Dies Natalis FKG UGM.</p>
           <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-slate-400">April 2026</span>
+            <span class="text-xs font-bold text-slate-400">20 April</span>
             <i data-lucide="chevron-right" class="w-4 h-4 text-rose-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
           </div>
         </a>
