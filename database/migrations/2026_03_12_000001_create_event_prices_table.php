@@ -10,11 +10,11 @@ return new class extends Migration
     {
         Schema::create('event_prices', function (Blueprint $table) {
             $table->id();
-            $table->string('category'); // alumni, civitas, umum
-            $table->string('event_code'); // simposium, handson, funrun, pengmas
+            $table->string('category', 50); // alumni, civitas, umum
+            $table->string('event_code', 100); // simposium, handson, funrun, pengmas
             $table->string('event_label');
             $table->boolean('is_bundle')->default(false);
-            $table->string('bundle_code')->nullable();
+            $table->string('bundle_code', 100)->nullable();
             $table->string('bundle_label')->nullable();
             $table->json('bundle_events')->nullable();
             $table->unsignedInteger('base_price');

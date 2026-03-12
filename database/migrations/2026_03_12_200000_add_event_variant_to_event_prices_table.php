@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('event_prices', function (Blueprint $table) {
-            $table->string('event_variant')->nullable()->after('event_code');
+            $table->string('event_variant', 100)->nullable()->after('event_code');
             $table->text('event_description')->nullable()->after('event_label');
 
             $table->dropUnique('unique_price_entry');
