@@ -47,7 +47,7 @@ class SpeakerResource extends Resource
                         Forms\Components\TextInput::make('title')
                             ->label('Gelar / Jabatan')
                             ->maxLength(255)
-                            ->helperText('Contoh: Keynote Speaker, Ortodonsi, Main Speaker'),
+                            ->helperText('Contoh: Keynote Speaker, Departemen Ortodonsia, Main Speaker'),
 
                         Forms\Components\Textarea::make('topic')
                             ->label('Topik')
