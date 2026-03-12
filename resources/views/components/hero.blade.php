@@ -39,7 +39,7 @@
           <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
             <a href="/registrasi?kategori=umum&event=simposium" class="bg-white text-primary-900 px-8 py-4 rounded-full font-black text-base hover:shadow-2xl transition-all hover:-translate-y-0.5 text-center shadow-xl">Registrasi Simposium</a>
             <a href="/registrasi?event=handson" class="bg-white/10 text-white px-8 py-4 rounded-full font-bold text-base hover:bg-white/20 transition-all text-center border border-white/20 backdrop-blur-sm">Registrasi Hands-on</a>
-            <a href="/registrasi?event=funrun" class="bg-green-500/20 text-white px-8 py-4 rounded-full font-bold text-base hover:bg-green-500/30 transition-all text-center border border-green-400/20 backdrop-blur-sm">Fun Run 5K</a>
+            <a href="/registrasi?event=funrun" class="bg-green-500/20 text-white px-8 py-4 rounded-full font-bold text-base hover:bg-green-500/30 transition-all text-center border border-green-400/20 backdrop-blur-sm">Fun Run</a>
             <a href="/registrasi?event=pengmas" class="bg-rose-500/20 text-white px-8 py-4 rounded-full font-bold text-base hover:bg-rose-500/30 transition-all text-center border border-rose-400/20 backdrop-blur-sm">Pengabdian Masyarakat</a>
           </div>
         </div>
