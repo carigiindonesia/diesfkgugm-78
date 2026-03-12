@@ -11,6 +11,7 @@
   @include('components.schedule')
   @include('components.pitch-competition')
   @include('components.fun-run')
+  @include('components.pengabdian-masyarakat')
   @include('components.venue')
   @include('components.documents')
   @include('components.articles')

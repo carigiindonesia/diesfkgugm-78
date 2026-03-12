@@ -11,6 +11,7 @@
         <button data-tab="day1" onclick="switchDay('day1')" class="flex-1 min-w-[100px] py-3.5 rounded-xl font-black text-sm tracking-wider transition-all bg-primary-600 text-white shadow-lg">Hari 1</button>
         <button data-tab="day2" onclick="switchDay('day2')" class="flex-1 min-w-[100px] py-3.5 rounded-xl font-black text-sm tracking-wider transition-all text-slate-400 hover:text-slate-700">Hari 2</button>
         <button data-tab="day3" onclick="switchDay('day3')" class="flex-1 min-w-[100px] py-3.5 rounded-xl font-black text-sm tracking-wider transition-all text-slate-400 hover:text-slate-700">Hari 3</button>
+        <button data-tab="day4" onclick="switchDay('day4')" class="flex-1 min-w-[100px] py-3.5 rounded-xl font-black text-sm tracking-wider transition-all text-slate-400 hover:text-slate-700">Hari 4</button>
       </div>
 
       <!-- DAY 1 -->
@@ -61,6 +62,31 @@
         <div class="space-y-3">
           <div class="bg-green-50 p-5 rounded-2xl flex flex-col sm:flex-row gap-4 sm:items-center border border-green-100 shadow-sm"><span class="font-black text-green-700 bg-green-100 px-3 py-1 rounded-lg text-xs tracking-wider whitespace-nowrap">06:00 – 09:00</span><span class="font-bold text-green-900">Fun Run Dies Natalis ke-78</span></div>
           <div class="bg-green-50 p-5 rounded-2xl flex flex-col sm:flex-row gap-4 sm:items-center border border-green-100 shadow-sm"><span class="font-black text-green-700 bg-green-100 px-3 py-1 rounded-lg text-xs tracking-wider whitespace-nowrap">09:00 – 11:30</span><span class="font-bold text-green-900">Hiburan &amp; Pengundian Doorprize</span></div>
+        </div>
+      </div>
+    <!-- DAY 4 -->
+      <div data-day="day4" class="hidden">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-rose-600"><i data-lucide="heart-handshake" class="w-5 h-5"></i></div>
+          <h4 class="text-xl font-black text-rose-900">Senin, 20 April 2026</h4>
+        </div>
+        <div class="mb-6 bg-rose-50 border border-rose-200 rounded-2xl p-6">
+          <h5 class="font-black text-rose-800 text-lg mb-2">Dental Charity Tourism</h5>
+          <p class="text-slate-700 text-sm leading-relaxed">Pelayanan, Edukasi, dan Wisata Sehat — Wujud nyata kepedulian terhadap kesehatan gigi dan mulut masyarakat pesisir.</p>
+          <div class="flex flex-wrap items-center gap-4 mt-4 text-rose-600 text-sm">
+            <span class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Kawasan Pantai Baron, Gunungkidul</span>
+            <span class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4"></i> 09:30 WIB – Selesai</span>
+          </div>
+        </div>
+        <div class="space-y-3">
+          <div class="bg-rose-50 p-5 rounded-2xl flex flex-col sm:flex-row gap-4 sm:items-center border border-rose-100 shadow-sm"><span class="font-black text-rose-700 bg-rose-100 px-3 py-1 rounded-lg text-xs tracking-wider whitespace-nowrap">09:30 – 10:00</span><span class="font-bold text-slate-800">Edukasi &amp; Penyuluhan: Materi kesehatan gigi khusus masyarakat pantai</span></div>
+          <div class="bg-rose-50 p-5 rounded-2xl flex flex-col sm:flex-row gap-4 sm:items-center border border-rose-100 shadow-sm"><span class="font-black text-rose-700 bg-rose-100 px-3 py-1 rounded-lg text-xs tracking-wider whitespace-nowrap">10:00 – 12:00</span><div><span class="font-bold text-slate-800">Pelayanan Gigi Gratis</span><span class="block text-xs text-slate-500 mt-1">Scaling, Ekstraksi (cabut gigi), dan Restorasi (tambal gigi)</span></div></div>
+          <div class="bg-rose-50 p-5 rounded-2xl flex flex-col sm:flex-row gap-4 sm:items-center border border-rose-100 shadow-sm"><span class="font-black text-rose-700 bg-rose-100 px-3 py-1 rounded-lg text-xs tracking-wider whitespace-nowrap">10:00 – 12:00</span><div><span class="font-bold text-slate-800">Konsultasi &amp; Screening</span><span class="block text-xs text-slate-500 mt-1">Pemeriksaan kesehatan mulut secara menyeluruh</span></div></div>
+          <div class="bg-rose-50 p-5 rounded-2xl flex flex-col sm:flex-row gap-4 sm:items-center border border-rose-100 shadow-sm"><span class="font-black text-rose-700 bg-rose-100 px-3 py-1 rounded-lg text-xs tracking-wider whitespace-nowrap">12:00 – Selesai</span><span class="font-bold text-slate-800">Pembagian Bingkisan Sehat untuk 150 warga pemegang kupon</span></div>
+        </div>
+        <div class="mt-6 bg-white border border-slate-200 rounded-2xl p-5 text-sm text-slate-600">
+          <p class="font-bold text-slate-800 mb-2">Kolaborasi:</p>
+          <p>FKG UGM, Puskesmas Tanjung Sari, dan Pemerintah Desa Pantai Baron</p>
         </div>
       </div>
     </div>
