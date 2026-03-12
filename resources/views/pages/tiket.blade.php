@@ -90,7 +90,7 @@
 
           <!-- Barcode -->
           <div class="text-center py-4">
-            <div class="inline-block">
+            <div class="w-full max-w-full overflow-hidden px-2 [&>svg]:w-full [&>svg]:h-auto">
               {!! $barcode !!}
             </div>
           </div>

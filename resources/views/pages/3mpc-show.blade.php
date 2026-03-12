@@ -115,7 +115,7 @@
             <p class="text-xs text-slate-400 font-bold tracking-widest uppercase mb-4 text-center">Bukti Submission</p>
 
             <div class="text-center py-4">
-              <div class="inline-block mb-4">
+              <div class="w-full max-w-full overflow-hidden px-2 mb-4 [&>svg]:w-full [&>svg]:h-auto">
                 {!! $ticketService->generateBarcode($submission->submission_number) !!}
               </div>
               <br>
