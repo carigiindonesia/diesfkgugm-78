@@ -22,9 +22,16 @@ class RegistrationController extends Controller
 
         $categories = ParticipantCategory::cases();
         $prices = EventPrice::active()->individual()->forCategory($category)->get();
-        $selectedEvent = $request->query('event');
+        $eventTypes = EventType::cases();
+        $selectedEventCode = $request->query('event');
 
-        return view('pages.registrasi', compact('category', 'categories', 'prices', 'selectedEvent'));
+        // Validate event code against known event types
+        $validEventCodes = array_map(fn ($e) => $e->value, $eventTypes);
+        if ($selectedEventCode && ! in_array($selectedEventCode, $validEventCodes)) {
+            $selectedEventCode = null;
+        }
+
+        return view('pages.registrasi', compact('category', 'categories', 'prices', 'eventTypes', 'selectedEventCode'));
     }
 
     public function bundling(Request $request)
