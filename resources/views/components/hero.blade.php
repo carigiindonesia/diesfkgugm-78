@@ -18,6 +18,7 @@
           <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.95] mb-6 tracking-tight">
             ANNUAL<br/>SYMPOSIUM
           </h1>
+          <h2 class="sr-only">Dies Natalis Fakultas Kedokteran Gigi Universitas Gadjah Mada ke-78 — Simposium, Workshop, dan Kegiatan Ilmiah Kedokteran Gigi 2026</h2>
           <p class="text-lg md:text-xl text-white/80 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed italic font-light">
             &ldquo;Empowering Dental Sociopreneurs: Education and Technology for Oral Health Transformation&rdquo;
           </p>

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Paket Bundling Dies Natalis FKG UGM ke-78 | Hemat Registrasi')
+@section('meta_description', 'Daftar paket bundling hemat Dies Natalis FKG UGM ke-78. Gabungkan beberapa kegiatan sekaligus dengan harga spesial. 17-19 April 2026, Yogyakarta.')
+
 @section('content')
   @include('components.navbar')
 
@@ -152,6 +155,13 @@
                 </div>
 
                 <div>
+                  <label class="block text-sm font-bold text-slate-700 mb-2">NIK (Nomor Induk Kependudukan)</label>
+                  <input type="text" name="nik" value="{{ old('nik') }}" required inputmode="numeric" pattern="[0-9]{16}" maxlength="16" placeholder="16 digit angka"
+                         class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
+                  @error('nik') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <div>
                   <label class="block text-sm font-bold text-slate-700 mb-2">Nama di SatuSehat SDMK</label>
                   <input type="text" name="nama_satusehat" value="{{ old('nama_satusehat') }}" required
                          class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
@@ -285,6 +295,12 @@
         html += '<div>';
         html += '<label class="block text-sm font-bold text-slate-700 mb-2">Tanggal Lahir</label>';
         html += '<input type="date" name="participants[' + (i - 1) + '][tanggal_lahir]" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">';
+        html += '</div>';
+
+        // NIK
+        html += '<div>';
+        html += '<label class="block text-sm font-bold text-slate-700 mb-2">NIK (Nomor Induk Kependudukan)</label>';
+        html += '<input type="text" name="participants[' + (i - 1) + '][nik]" required inputmode="numeric" pattern="[0-9]{16}" maxlength="16" placeholder="16 digit angka" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">';
         html += '</div>';
 
         // Nama SatuSehat

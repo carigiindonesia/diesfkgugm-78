@@ -81,6 +81,7 @@ class RegistrationController extends Controller
             $order = Order::create([
                 'nama_lengkap' => $validated['nama_lengkap'],
                 'tanggal_lahir' => $validated['tanggal_lahir'],
+                'nik' => $validated['nik'] ?? null,
                 'nama_satusehat' => $validated['nama_satusehat'] ?? null,
                 'email_satusehat' => $validated['email_satusehat'] ?? null,
                 'email' => $validated['email'],
@@ -129,6 +130,11 @@ class RegistrationController extends Controller
             'quantity' => 'required|integer|min:1|max:10',
         ];
 
+        // NIK required for satusehat and mixed form types (Simposium, Hands-on, Pengmas, and bundles)
+        if ($formType === 'satusehat' || $formType === 'mixed') {
+            $rules['nik'] = 'required|digits:16';
+        }
+
         if ($formType === 'satusehat' || $formType === 'mixed') {
             $rules['nama_satusehat'] = 'required|string|max:255';
             $rules['email_satusehat'] = 'required|email|max:255';
@@ -154,6 +160,7 @@ class RegistrationController extends Controller
         $rules['participants.*.lembaga'] = 'required|string|max:255';
 
         if ($formType === 'satusehat' || $formType === 'mixed') {
+            $rules['participants.*.nik'] = 'required|digits:16';
             $rules['participants.*.nama_satusehat'] = 'required|string|max:255';
             $rules['participants.*.email_satusehat'] = 'required|email|max:255';
             $rules['participants.*.whatsapp_satusehat'] = 'required|string|max:20';
@@ -201,6 +208,7 @@ class RegistrationController extends Controller
                         'display_price' => $individual?->display_price ?? 0,
                         'participant_name' => $participant['nama_lengkap'],
                         'participant_tanggal_lahir' => $participant['tanggal_lahir'],
+                        'participant_nik' => $participant['nik'],
                         'participant_lembaga' => $participant['lembaga'],
                         'participant_nama_satusehat' => $participant['nama_satusehat'],
                         'participant_jersey_type' => $eventCode === 'funrun' ? $participant['jersey_type'] : null,
@@ -215,6 +223,7 @@ class RegistrationController extends Controller
                     'display_price' => $eventPrice->display_price,
                     'participant_name' => $participant['nama_lengkap'],
                     'participant_tanggal_lahir' => $participant['tanggal_lahir'],
+                    'participant_nik' => $participant['nik'],
                     'participant_lembaga' => $participant['lembaga'],
                     'participant_nama_satusehat' => $participant['nama_satusehat'],
                     'participant_jersey_type' => $participant['jersey_type'],
@@ -232,6 +241,7 @@ class RegistrationController extends Controller
         $participants[] = [
             'nama_lengkap' => $validated['nama_lengkap'],
             'tanggal_lahir' => $validated['tanggal_lahir'],
+            'nik' => $validated['nik'] ?? null,
             'lembaga' => $validated['lembaga'],
             'nama_satusehat' => $validated['nama_satusehat'] ?? null,
             'jersey_type' => $validated['jersey_type'] ?? null,
@@ -243,6 +253,7 @@ class RegistrationController extends Controller
             $participants[] = [
                 'nama_lengkap' => $p['nama_lengkap'],
                 'tanggal_lahir' => $p['tanggal_lahir'],
+                'nik' => $p['nik'] ?? null,
                 'lembaga' => $p['lembaga'],
                 'nama_satusehat' => $p['nama_satusehat'] ?? null,
                 'jersey_type' => $p['jersey_type'] ?? null,

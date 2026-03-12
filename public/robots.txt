@@ -1,2 +1,7 @@
 User-agent: *
-Disallow:
+Disallow: /admin
+Disallow: /webhook
+Disallow: /pembayaran
+Disallow: /tiket
+
+Sitemap: /sitemap.xml
