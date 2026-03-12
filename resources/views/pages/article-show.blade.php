@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('title', $article->title . ' | Dies Natalis FKG UGM ke-78')
+@section('meta_description', Str::limit(strip_tags($article->body), 160))
+@section('og_title', $article->title . ' | Dies Natalis FKG UGM ke-78')
+@section('og_description', Str::limit(strip_tags($article->body), 200))
+
 @section('content')
   <!-- Simple Navbar for Article Page -->
   <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100">

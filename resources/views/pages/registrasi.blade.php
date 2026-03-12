@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Registrasi Dies Natalis FKG UGM ke-78 | Simposium, Workshop & Fun Run')
+@section('meta_description', 'Daftar sekarang untuk Dies Natalis FKG UGM ke-78. Pilih kegiatan: Simposium Kedokteran Gigi, Hands-on Workshop, Fun Run 5K, atau Pengabdian Masyarakat. 17-19 April 2026, Yogyakarta.')
+
 @section('content')
   @include('components.navbar')
 
@@ -155,6 +158,14 @@
                   <input type="date" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" required
                          class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
                   @error('tanggal_lahir') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- NIK Field (simposium, handson, pengmas) -->
+                <div id="fields-nik-0" class="hidden">
+                  <label class="block text-sm font-bold text-slate-700 mb-2">NIK (Nomor Induk Kependudukan)</label>
+                  <input type="text" name="nik" value="{{ old('nik') }}" inputmode="numeric" pattern="[0-9]{16}" maxlength="16" placeholder="16 digit angka"
+                         class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">
+                  @error('nik') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                 </div>
 
                 <!-- SatuSehat Fields (simposium, handson, pengmas) -->
@@ -313,6 +324,14 @@
         html += '<input type="date" name="participants[' + (i - 1) + '][tanggal_lahir]" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">';
         html += '</div>';
 
+        // NIK field
+        if (isSatusehat) {
+          html += '<div>';
+          html += '<label class="block text-sm font-bold text-slate-700 mb-2">NIK (Nomor Induk Kependudukan)</label>';
+          html += '<input type="text" name="participants[' + (i - 1) + '][nik]" required inputmode="numeric" pattern="[0-9]{16}" maxlength="16" placeholder="16 digit angka" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 outline-none transition-all text-sm">';
+          html += '</div>';
+        }
+
         // SatuSehat fields
         if (isSatusehat) {
           html += '<div>';
@@ -390,10 +409,14 @@
 
       // Toggle field visibility based on event type
       const isSatusehat = satusehatTypes.includes(eventType);
+      document.getElementById('fields-nik-0').classList.toggle('hidden', !isSatusehat);
       document.getElementById('fields-satusehat-0').classList.toggle('hidden', !isSatusehat);
       document.getElementById('fields-funrun-0').classList.toggle('hidden', eventType !== 'funrun');
 
       // Toggle required attributes for participant 1
+      document.querySelectorAll('#fields-nik-0 input').forEach(function(input) {
+        input.required = isSatusehat;
+      });
       document.querySelectorAll('#fields-satusehat-0 input').forEach(function(input) {
         input.required = isSatusehat;
       });

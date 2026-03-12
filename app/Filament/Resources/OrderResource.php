@@ -104,6 +104,8 @@ class OrderResource extends Resource
                             ->color(fn (string $state) => OrderStatus::from($state)->color()),
                         Infolists\Components\TextEntry::make('nama_lengkap')->label('Nama Lengkap'),
                         Infolists\Components\TextEntry::make('tanggal_lahir')->label('Tanggal Lahir')->date(),
+                        Infolists\Components\TextEntry::make('nik')->label('NIK')
+                            ->visible(fn ($record) => $record->nik),
                         Infolists\Components\TextEntry::make('nama_satusehat')->label('Nama SATUSEHAT SDMK'),
                         Infolists\Components\TextEntry::make('email_satusehat')->label('Email SATUSEHAT'),
                         Infolists\Components\TextEntry::make('email')->label('Email'),

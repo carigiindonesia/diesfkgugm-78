@@ -19,6 +19,7 @@ class OrderItem extends Model
         'display_price',
         'participant_name',
         'participant_tanggal_lahir',
+        'participant_nik',
         'participant_lembaga',
         'participant_nama_satusehat',
         'participant_jersey_type',
