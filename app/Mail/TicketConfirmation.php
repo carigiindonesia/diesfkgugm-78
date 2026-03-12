@@ -25,7 +25,7 @@ class TicketConfirmation extends Mailable implements ShouldQueue
 
     public function content(): Content
     {
-        $this->order->load('tickets');
+        $this->order->load('tickets', 'items');
 
         return new Content(
             view: 'emails.ticket-confirmation',
@@ -34,6 +34,7 @@ class TicketConfirmation extends Mailable implements ShouldQueue
                 'ticketLinks' => $this->order->tickets->map(fn ($t) => [
                     'label' => $t->event_label,
                     'code' => $t->ticket_code,
+                    'participant_name' => $t->participant_name,
                     'url' => route('tiket.show', $t->ticket_code),
                 ]),
             ],

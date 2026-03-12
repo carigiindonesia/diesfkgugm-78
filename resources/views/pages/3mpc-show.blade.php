@@ -38,6 +38,12 @@
               'rejected'  => ['bg' => 'bg-red-100', 'text' => 'text-red-700', 'label' => 'Rejected'],
             ];
             $status = $statusConfig[$submission->status] ?? $statusConfig['submitted'];
+
+            $kategoriLabels = [
+              'original_article' => 'Original Article',
+              'case_report' => 'Case Report',
+              'review' => 'Review',
+            ];
           @endphp
           <span class="px-3 py-1.5 rounded-full text-xs font-bold {{ $status['bg'] }} {{ $status['text'] }}">
             {{ $status['label'] }}
@@ -53,7 +59,7 @@
 
           <div>
             <p class="text-xs text-slate-400 font-bold tracking-widest uppercase mb-1">Author(s)</p>
-            <p class="text-sm font-bold text-slate-800">{{ $submission->nama_author }}</p>
+            <p class="text-sm font-bold text-slate-800">{{ $submission->authors }}</p>
           </div>
 
           <div>
@@ -61,26 +67,41 @@
             <p class="text-sm font-bold text-slate-800">{{ $submission->lembaga }}</p>
           </div>
 
+          @if($submission->kategori)
+          <div>
+            <p class="text-xs text-slate-400 font-bold tracking-widest uppercase mb-1">Kategori</p>
+            <p class="text-sm font-bold text-slate-800">{{ $kategoriLabels[$submission->kategori] ?? $submission->kategori }}</p>
+          </div>
+          @endif
+
           <div>
             <p class="text-xs text-slate-400 font-bold tracking-widest uppercase mb-1">Judul</p>
             <p class="text-sm font-bold text-slate-800">{{ $submission->judul }}</p>
+          </div>
+
+          <div>
+            <p class="text-xs text-slate-400 font-bold tracking-widest uppercase mb-1">Waktu Submit</p>
+            <p class="text-sm font-bold text-slate-800">
+              {{ $submission->created_at->locale('id')->isoFormat('dddd, D MMMM Y') }}
+              pukul {{ $submission->created_at->format('H:i') }} WIB
+            </p>
           </div>
 
           <!-- Links -->
           <div class="border-t border-slate-100 pt-6 space-y-4">
             <div>
               <p class="text-xs text-slate-400 font-bold tracking-widest uppercase mb-2">Link Abstrak</p>
-              <a href="{{ $submission->link_abstrak }}" target="_blank" rel="noreferrer"
+              <a href="{{ $submission->abstract_link }}" target="_blank" rel="noreferrer"
                  class="inline-flex items-center gap-2 text-sm font-bold text-amber-600 hover:text-amber-700 transition-colors bg-amber-50 px-4 py-2.5 rounded-xl">
                 <i data-lucide="external-link" class="w-4 h-4"></i>
                 Buka Abstrak
               </a>
             </div>
 
-            @if($submission->link_video)
+            @if($submission->video_link)
               <div>
                 <p class="text-xs text-slate-400 font-bold tracking-widest uppercase mb-2">Link Video</p>
-                <a href="{{ $submission->link_video }}" target="_blank" rel="noreferrer"
+                <a href="{{ $submission->video_link }}" target="_blank" rel="noreferrer"
                    class="inline-flex items-center gap-2 text-sm font-bold text-amber-600 hover:text-amber-700 transition-colors bg-amber-50 px-4 py-2.5 rounded-xl">
                   <i data-lucide="external-link" class="w-4 h-4"></i>
                   Buka Video
@@ -88,6 +109,41 @@
               </div>
             @endif
           </div>
+
+          <!-- Barcode & QR Code -->
+          <div class="border-t border-slate-100 pt-6">
+            <p class="text-xs text-slate-400 font-bold tracking-widest uppercase mb-4 text-center">Bukti Submission</p>
+
+            <div class="text-center py-4">
+              <div class="inline-block mb-4">
+                {!! $ticketService->generateBarcode($submission->submission_number) !!}
+              </div>
+              <br>
+              <div class="inline-block bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
+                {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(200)->errorCorrection('H')->generate(route('3mpc.show', $submission->uuid)) !!}
+              </div>
+              <p class="text-xs text-slate-400 mt-3">Scan QR Code untuk verifikasi submission</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Download Button -->
+        <div class="mt-8">
+          <a href="{{ route('3mpc.download-ticket', $submission->uuid) }}"
+             class="w-full flex items-center justify-center gap-2 bg-amber-500 text-white py-3.5 rounded-xl font-bold text-sm hover:bg-amber-600 transition-all shadow-md">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            Download Bukti Submission (PDF)
+          </a>
+        </div>
+      </div>
+
+      <!-- Support -->
+      <div class="bg-white rounded-3xl border border-slate-100 shadow-lg p-6 mt-6 fade-in">
+        <div class="bg-blue-50 rounded-2xl p-5 border border-blue-100">
+          <p class="text-xs font-bold text-blue-800 tracking-widest uppercase mb-2">Registrations Support & Helpdesk</p>
+          <p class="text-sm font-bold text-blue-900">Carigi Indonesia</p>
+          <p class="text-sm text-blue-800">WhatsApp: <strong>085147686127</strong></p>
+          <p class="text-xs text-slate-500 mt-2">Hubungi kami jika ada kendala atau kesulitan.</p>
         </div>
       </div>
 

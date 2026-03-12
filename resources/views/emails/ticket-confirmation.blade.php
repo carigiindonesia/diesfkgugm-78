@@ -39,8 +39,13 @@
                     @foreach($order->items as $item)
                     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
                       <tr>
-                        <td style="padding: 6px 0; font-size: 14px; color: #475569;">{{ $item->event_label }}</td>
-                        <td style="padding: 6px 0; font-size: 14px; color: #1e293b; font-weight: 700; text-align: right;">Rp {{ number_format($item->price, 0, ',', '.') }}</td>
+                        <td style="padding: 6px 0; font-size: 14px; color: #475569;">
+                          {{ $item->event_label }}
+                          @if($item->participant_name)
+                            <br><span style="font-size: 12px; color: #94a3b8;">Peserta: {{ $item->participant_name }}</span>
+                          @endif
+                        </td>
+                        <td style="padding: 6px 0; font-size: 14px; color: #1e293b; font-weight: 700; text-align: right; vertical-align: top;">Rp {{ number_format($item->display_price, 0, ',', '.') }}</td>
                       </tr>
                     </table>
                     @endforeach
@@ -49,7 +54,7 @@
                     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
                       <tr>
                         <td style="padding: 4px 0; font-size: 14px; font-weight: 900; color: #b45309;">Total</td>
-                        <td style="padding: 4px 0; font-size: 14px; font-weight: 900; color: #b45309; text-align: right;">Rp {{ number_format($order->total, 0, ',', '.') }}</td>
+                        <td style="padding: 4px 0; font-size: 14px; font-weight: 900; color: #b45309; text-align: right;">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
                       </tr>
                     </table>
                   </td>
@@ -63,7 +68,8 @@
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin-bottom: 8px;">
                 <tr>
                   <td style="background-color: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 16px;">
-                    <p style="margin: 0 0 4px 0; font-size: 14px; font-weight: 700; color: #1e293b;">{{ $link['label'] }}</p>
+                    <p style="margin: 0 0 2px 0; font-size: 14px; font-weight: 700; color: #1e293b;">{{ $link['label'] }}</p>
+                    <p style="margin: 0 0 2px 0; font-size: 12px; color: #475569;">Peserta: {{ $link['participant_name'] }}</p>
                     <p style="margin: 0 0 8px 0; font-size: 12px; color: #94a3b8; font-family: 'Courier New', monospace;">{{ $link['code'] }}</p>
                     <a href="{{ $link['url'] }}" style="display: inline-block; background-color: #f59e0b; color: #ffffff; padding: 8px 20px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none;">
                       Lihat Tiket
@@ -73,10 +79,38 @@
               </table>
               @endforeach
 
+              <!-- Download All Button -->
+              @if(count($ticketLinks) > 1)
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin-top: 16px;">
+                <tr>
+                  <td align="center">
+                    <a href="{{ route('tiket.download-order', $order->uuid) }}" style="display: inline-block; background-color: #334155; color: #ffffff; padding: 12px 32px; border-radius: 10px; font-size: 14px; font-weight: 700; text-decoration: none;">
+                      Download Semua Tiket (PDF)
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              @endif
+
               <!-- Info -->
               <p style="margin: 32px 0 0 0; font-size: 13px; color: #94a3b8; line-height: 1.6;">
                 Harap simpan tiket ini dengan baik. Tunjukkan QR Code tiket saat registrasi ulang di lokasi acara.
               </p>
+            </td>
+          </tr>
+
+          <!-- Support -->
+          <tr>
+            <td style="padding: 0 40px 24px;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px;">
+                <tr>
+                  <td style="padding: 16px;">
+                    <p style="margin: 0 0 4px 0; font-size: 11px; font-weight: 700; color: #1e40af; letter-spacing: 1px; text-transform: uppercase;">Registrations Support & Helpdesk</p>
+                    <p style="margin: 0 0 2px 0; font-size: 13px; font-weight: 700; color: #1e3a5f;">Carigi Indonesia</p>
+                    <p style="margin: 0; font-size: 13px; color: #1e3a5f;">WhatsApp: <strong>085147686127</strong></p>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
 

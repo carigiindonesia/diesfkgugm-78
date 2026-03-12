@@ -45,6 +45,15 @@ class PitchSubmissionResource extends Resource
                     ->label('Lembaga')
                     ->searchable()
                     ->toggleable(),
+                Tables\Columns\TextColumn::make('kategori')
+                    ->label('Kategori')
+                    ->formatStateUsing(fn (?string $state) => match ($state) {
+                        'original_article' => 'Original Article',
+                        'case_report' => 'Case Report',
+                        'review' => 'Review',
+                        default => $state ?? '-',
+                    })
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
                     ->color(fn (string $state) => match ($state) {
@@ -67,6 +76,13 @@ class PitchSubmissionResource extends Resource
                         'reviewing' => 'Reviewing',
                         'accepted' => 'Accepted',
                         'rejected' => 'Rejected',
+                    ]),
+                Tables\Filters\SelectFilter::make('kategori')
+                    ->label('Kategori')
+                    ->options([
+                        'original_article' => 'Original Article',
+                        'case_report' => 'Case Report',
+                        'review' => 'Review',
                     ]),
             ])
             ->actions([
@@ -115,6 +131,14 @@ class PitchSubmissionResource extends Resource
                             }),
                         Infolists\Components\TextEntry::make('authors')->label('Penulis')->columnSpanFull(),
                         Infolists\Components\TextEntry::make('lembaga')->label('Lembaga'),
+                        Infolists\Components\TextEntry::make('kategori')
+                            ->label('Kategori')
+                            ->formatStateUsing(fn (?string $state) => match ($state) {
+                                'original_article' => 'Original Article',
+                                'case_report' => 'Case Report',
+                                'review' => 'Review',
+                                default => $state ?? '-',
+                            }),
                         Infolists\Components\TextEntry::make('judul')->label('Judul')->columnSpanFull(),
                         Infolists\Components\TextEntry::make('abstract_link')
                             ->label('Link Abstrak')
