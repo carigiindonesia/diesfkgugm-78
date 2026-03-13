@@ -34,6 +34,8 @@ class Order extends Model
         'xendit_invoice_id',
         'xendit_invoice_url',
         'xendit_payment_method',
+        'payment_method',
+        'payment_proof',
         'paid_at',
         'expired_at',
         'is_bundle',

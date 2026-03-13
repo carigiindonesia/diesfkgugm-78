@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Enums\OrderStatus;
 use App\Enums\ParticipantCategory;
+use App\Enums\PaymentMethod;
 use App\Filament\Resources\OrderResource\Pages;
 use App\Models\Order;
 use Filament\Infolists;
@@ -61,6 +62,12 @@ class OrderResource extends Resource
                     ->badge()
                     ->formatStateUsing(fn (string $state) => OrderStatus::from($state)->label())
                     ->color(fn (string $state) => OrderStatus::from($state)->color()),
+                Tables\Columns\TextColumn::make('payment_method')
+                    ->label('Cara Pembayaran')
+                    ->badge()
+                    ->formatStateUsing(fn (string $state) => PaymentMethod::tryFrom($state)?->label() ?? $state)
+                    ->color(fn (string $state) => PaymentMethod::tryFrom($state)?->color() ?? 'gray')
+                    ->toggleable(),
                 Tables\Columns\IconColumn::make('email_sent')
                     ->label('Email')
                     ->boolean()
@@ -84,6 +91,9 @@ class OrderResource extends Resource
                     ->options(collect(ParticipantCategory::cases())->mapWithKeys(fn ($c) => [$c->value => $c->label()])),
                 Tables\Filters\TernaryFilter::make('is_bundle')
                     ->label('Paket Bundling'),
+                Tables\Filters\SelectFilter::make('payment_method')
+                    ->label('Cara Pembayaran')
+                    ->options(collect(PaymentMethod::cases())->mapWithKeys(fn ($m) => [$m->value => $m->label()])),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -125,12 +135,24 @@ class OrderResource extends Resource
                 Infolists\Components\Section::make('Pembayaran')
                     ->columns(2)
                     ->schema([
+                        Infolists\Components\TextEntry::make('payment_method')
+                            ->label('Cara Pembayaran')
+                            ->badge()
+                            ->formatStateUsing(fn (string $state) => PaymentMethod::tryFrom($state)?->label() ?? $state)
+                            ->color(fn (string $state) => PaymentMethod::tryFrom($state)?->color() ?? 'gray'),
                         Infolists\Components\TextEntry::make('subtotal')->money('IDR'),
                         Infolists\Components\TextEntry::make('fee_amount')->label('Biaya')->money('IDR'),
                         Infolists\Components\TextEntry::make('total_amount')->label('Total')->money('IDR'),
-                        Infolists\Components\TextEntry::make('xendit_payment_method')->label('Metode Bayar'),
+                        Infolists\Components\TextEntry::make('xendit_payment_method')->label('Metode Bayar Xendit')
+                            ->visible(fn ($record) => $record->payment_method === PaymentMethod::PaymentGateway->value),
                         Infolists\Components\TextEntry::make('paid_at')->label('Dibayar')->dateTime(),
-                        Infolists\Components\TextEntry::make('xendit_invoice_id')->label('Xendit Invoice ID'),
+                        Infolists\Components\TextEntry::make('xendit_invoice_id')->label('Xendit Invoice ID')
+                            ->visible(fn ($record) => $record->payment_method === PaymentMethod::PaymentGateway->value),
+                        Infolists\Components\ImageEntry::make('payment_proof')
+                            ->label('Bukti Pembayaran')
+                            ->disk('public')
+                            ->columnSpanFull()
+                            ->visible(fn ($record) => $record->payment_method === PaymentMethod::Manual->value && $record->payment_proof),
                     ]),
 
                 Infolists\Components\Section::make('Item Pesanan')
@@ -168,6 +190,7 @@ class OrderResource extends Resource
     {
         return [
             'index' => Pages\ListOrders::route('/'),
+            'create-manual' => Pages\CreateManualOrder::route('/create-manual'),
             'view' => Pages\ViewOrder::route('/{record}'),
         ];
     }
