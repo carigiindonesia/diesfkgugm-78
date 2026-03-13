@@ -34,9 +34,15 @@
       <div class="flex items-center gap-4 justify-center md:justify-start mb-10 text-white/60 text-sm">
         <span class="flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4"></i> Jumat – Sabtu, 17–18 April 2026</span>
       </div>
-      <a href="/3mpc/submit" class="bg-white text-orange-600 px-12 py-5 rounded-full font-black text-lg hover:shadow-[0_20px_50px_-15px_rgba(255,255,255,0.4)] transition-all inline-block shadow-2xl hover:-translate-y-1">
-        Info &amp; Pendaftaran
-      </a>
+      <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+        <a href="/3mpc/submit" class="bg-white text-orange-600 px-12 py-5 rounded-full font-black text-lg hover:shadow-[0_20px_50px_-15px_rgba(255,255,255,0.4)] transition-all inline-block shadow-2xl hover:-translate-y-1">
+          Info &amp; Pendaftaran
+        </a>
+        <a href="https://diska.ugm.ac.id/s/EDzBdfDtyYKwFFk" target="_blank" rel="noopener noreferrer"
+           class="bg-white/15 text-white px-8 py-5 rounded-full font-bold text-lg hover:bg-white/25 transition-all inline-flex items-center gap-2 border border-white/20 backdrop-blur-sm">
+          <i data-lucide="file-text" class="w-5 h-5"></i> Template Dokumen
+        </a>
+      </div>
     </div>
     <div class="md:w-2/5 flex justify-center fade-in">
       <div class="relative">

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>@yield('title', 'Dies Natalis FKG UGM ke-78 | Simposium & Workshop Kedokteran Gigi 2026')</title>
-  <meta name="description" content="@yield('meta_description', 'Dies Natalis FKG UGM ke-78 — Simposium, Hands-on Workshop, Fun Run & Pengabdian Masyarakat. Empowering Dental Sociopreneurs: Education and Technology for Oral Health Transformation. 17-19 April 2026, Yogyakarta.')" />
+  <meta name="description" content="@yield('meta_description', 'Dies Natalis FKG UGM ke-78 — Simposium, Hands-on Workshop, Fun Run & Pengabdian Masyarakat. Empowering Dental Sociopreneurs: Education and Technology for Oral Health Transformation. 17-20 April 2026, Yogyakarta.')" />
   <meta name="keywords" content="Dies Natalis FKG UGM, Dies Natalis FKG UGM ke-78, Fakultas Kedokteran Gigi UGM, Simposium Kedokteran Gigi, Hands-on Workshop UGM, Annual Symposium FKG UGM 2026, Dental Sociopreneurs, Oral Health Transformation, Fun Run FKG UGM, Universitas Gadjah Mada" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="{{ url()->current() }}" />
@@ -14,13 +14,13 @@
   <meta property="og:locale" content="id_ID" />
   <meta property="og:site_name" content="Dies Natalis FKG UGM ke-78" />
   <meta property="og:title" content="@yield('og_title', 'Dies Natalis FKG UGM ke-78 | Simposium & Workshop Kedokteran Gigi 2026')" />
-  <meta property="og:description" content="@yield('og_description', 'Dies Natalis FKG UGM ke-78 — Simposium, Hands-on Workshop, Fun Run & Pengabdian Masyarakat. 17-19 April 2026, Gadjah Mada University Club Hotel, Yogyakarta.')" />
+  <meta property="og:description" content="@yield('og_description', 'Dies Natalis FKG UGM ke-78 — Simposium, Hands-on Workshop, Fun Run & Pengabdian Masyarakat. 17-20 April 2026, Gadjah Mada University Club Hotel, Yogyakarta.')" />
   <meta property="og:url" content="{{ url()->current() }}" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="@yield('twitter_title', 'Dies Natalis FKG UGM ke-78 | Annual Symposium 2026')" />
-  <meta name="twitter:description" content="@yield('twitter_description', 'Simposium & Workshop Kedokteran Gigi — Empowering Dental Sociopreneurs. 17-19 April 2026, Yogyakarta.')" />
+  <meta name="twitter:description" content="@yield('twitter_description', 'Simposium & Workshop Kedokteran Gigi — Empowering Dental Sociopreneurs. 17-20 April 2026, Yogyakarta.')" />
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -30,7 +30,7 @@
     "name": "Dies Natalis FKG UGM ke-78 — Annual Symposium",
     "description": "Empowering Dental Sociopreneurs: Education and Technology for Oral Health Transformation",
     "startDate": "2026-04-17",
-    "endDate": "2026-04-19",
+    "endDate": "2026-04-20",
     "eventStatus": "https://schema.org/EventScheduled",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "location": {

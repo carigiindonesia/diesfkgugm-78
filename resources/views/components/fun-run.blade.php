@@ -48,7 +48,7 @@
         </div>
 
         <div class="flex items-center gap-4 justify-center md:justify-start mb-10 text-white/60 text-sm">
-          <span class="flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4"></i> Minggu, 19 April 2026</span>
+          <span class="flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4"></i> Minggu, 20 April 2026</span>
           <span class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4"></i> 06:00 WIB</span>
         </div>
         <a href="/registrasi?event=funrun" class="bg-white text-green-600 px-12 py-5 rounded-full font-black text-lg hover:shadow-[0_20px_50px_-15px_rgba(255,255,255,0.4)] transition-all inline-block shadow-2xl hover:-translate-y-1">
@@ -59,7 +59,7 @@
         <div class="relative">
           <i data-lucide="footprints" class="w-64 h-64 opacity-15 rotate-12"></i>
           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gold-500 text-white p-8 rounded-[2.5rem] font-black rotate-[12deg] shadow-2xl text-center hover:rotate-0 transition-transform cursor-default">
-            <span class="text-4xl block">19</span>
+            <span class="text-4xl block">20</span>
             <span class="text-sm tracking-widest uppercase">April</span>
           </div>
         </div>

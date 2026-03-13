@@ -291,12 +291,12 @@
     $jerseySize = $data['jerseySize'] ?? null;
 
     $eventDateMap = [
-      'simposium' => '17 - 19 April 2026',
-      'handson' => '17 - 19 April 2026',
-      'funrun' => '19 April 2026',
-      'pengmas' => '17 - 19 April 2026',
+      'simposium' => '17 - 20 April 2026',
+      'handson' => '17 - 20 April 2026',
+      'funrun' => '20 April 2026',
+      'pengmas' => '17 - 20 April 2026',
     ];
-    $eventDate = $eventDateMap[$ticket->event_code] ?? '17 - 19 April 2026';
+    $eventDate = $eventDateMap[$ticket->event_code] ?? '17 - 20 April 2026';
   @endphp
   <div class="ticket-page">
     <!-- Header -->

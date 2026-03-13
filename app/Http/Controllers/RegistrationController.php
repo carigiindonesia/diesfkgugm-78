@@ -101,6 +101,8 @@ class RegistrationController extends Controller
                 'category' => $validated['category'],
                 'jersey_type' => $validated['jersey_type'] ?? null,
                 'jersey_size' => $validated['jersey_size'] ?? null,
+                'emergency_contact_name' => $validated['emergency_contact_name'] ?? null,
+                'emergency_contact_whatsapp' => $validated['emergency_contact_whatsapp'] ?? null,
                 'quantity' => $quantity,
                 'subtotal' => $subtotal,
                 'fee_amount' => $feeAmount,
@@ -155,12 +157,17 @@ class RegistrationController extends Controller
             $rules['email'] = 'required|email|max:255';
             $rules['whatsapp'] = 'required|string|max:20';
             $rules['jersey_type'] = 'required|in:dewasa,anak';
-            $rules['jersey_size'] = 'required|in:S,M,L,XL,XXL,XXXL';
+            $rules['jersey_size'] = 'required|in:XS,S,M,L,XL,XXL,XXXL,3XL,4XL,5XL';
+            $rules['emergency_contact_name'] = 'required|string|max:255';
+            $rules['emergency_contact_whatsapp'] = 'required|string|max:20';
+            $rules['agree_important_notice'] = 'required|accepted';
+            $rules['agree_waiver'] = 'required|accepted';
+            $rules['electronic_signature'] = 'required|string|max:255';
         }
 
         if ($formType === 'mixed') {
             $rules['jersey_type'] = 'required|in:dewasa,anak';
-            $rules['jersey_size'] = 'required|in:S,M,L,XL,XXL,XXXL';
+            $rules['jersey_size'] = 'required|in:XS,S,M,L,XL,XXL,XXXL,3XL,4XL,5XL';
         }
 
         // Validation for additional participants (index 1+)
@@ -178,12 +185,14 @@ class RegistrationController extends Controller
 
         if ($formType === 'funrun') {
             $rules['participants.*.jersey_type'] = 'required|in:dewasa,anak';
-            $rules['participants.*.jersey_size'] = 'required|in:S,M,L,XL,XXL,XXXL';
+            $rules['participants.*.jersey_size'] = 'required|in:XS,S,M,L,XL,XXL,XXXL,3XL,4XL,5XL';
+            $rules['participants.*.emergency_contact_name'] = 'required|string|max:255';
+            $rules['participants.*.emergency_contact_whatsapp'] = 'required|string|max:20';
         }
 
         if ($formType === 'mixed') {
             $rules['participants.*.jersey_type'] = 'required|in:dewasa,anak';
-            $rules['participants.*.jersey_size'] = 'required|in:S,M,L,XL,XXL,XXXL';
+            $rules['participants.*.jersey_size'] = 'required|in:XS,S,M,L,XL,XXL,XXXL,3XL,4XL,5XL';
         }
 
         return $rules;
@@ -223,6 +232,8 @@ class RegistrationController extends Controller
                         'participant_nama_satusehat' => $participant['nama_satusehat'],
                         'participant_jersey_type' => $eventCode === 'funrun' ? $participant['jersey_type'] : null,
                         'participant_jersey_size' => $eventCode === 'funrun' ? $participant['jersey_size'] : null,
+                        'participant_emergency_contact_name' => $eventCode === 'funrun' ? $participant['emergency_contact_name'] : null,
+                        'participant_emergency_contact_whatsapp' => $eventCode === 'funrun' ? $participant['emergency_contact_whatsapp'] : null,
                     ]);
                 }
             } else {
@@ -238,6 +249,8 @@ class RegistrationController extends Controller
                     'participant_nama_satusehat' => $participant['nama_satusehat'],
                     'participant_jersey_type' => $participant['jersey_type'],
                     'participant_jersey_size' => $participant['jersey_size'],
+                    'participant_emergency_contact_name' => $participant['emergency_contact_name'],
+                    'participant_emergency_contact_whatsapp' => $participant['emergency_contact_whatsapp'],
                 ]);
             }
         }
@@ -256,6 +269,8 @@ class RegistrationController extends Controller
             'nama_satusehat' => $validated['nama_satusehat'] ?? null,
             'jersey_type' => $validated['jersey_type'] ?? null,
             'jersey_size' => $validated['jersey_size'] ?? null,
+            'emergency_contact_name' => $validated['emergency_contact_name'] ?? null,
+            'emergency_contact_whatsapp' => $validated['emergency_contact_whatsapp'] ?? null,
         ];
 
         // Additional participants
@@ -268,6 +283,8 @@ class RegistrationController extends Controller
                 'nama_satusehat' => $p['nama_satusehat'] ?? null,
                 'jersey_type' => $p['jersey_type'] ?? null,
                 'jersey_size' => $p['jersey_size'] ?? null,
+                'emergency_contact_name' => $p['emergency_contact_name'] ?? null,
+                'emergency_contact_whatsapp' => $p['emergency_contact_whatsapp'] ?? null,
             ];
         }
 

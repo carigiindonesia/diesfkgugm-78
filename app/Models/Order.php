@@ -24,6 +24,8 @@ class Order extends Model
         'category',
         'jersey_type',
         'jersey_size',
+        'emergency_contact_name',
+        'emergency_contact_whatsapp',
         'quantity',
         'subtotal',
         'fee_amount',
