@@ -31,6 +31,8 @@ class Order extends Model
         'fee_amount',
         'total_amount',
         'status',
+        'payment_method',
+        'payment_proof',
         'xendit_invoice_id',
         'xendit_invoice_url',
         'xendit_payment_method',
