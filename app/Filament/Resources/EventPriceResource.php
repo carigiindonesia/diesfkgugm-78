@@ -86,7 +86,7 @@ class EventPriceResource extends Resource
                             ->numeric()
                             ->disabled()
                             ->dehydrated(false)
-                            ->helperText('Dihitung otomatis: harga dasar × 1.10 × 1.11 (termasuk biaya layanan + PPN 11%)'),
+                            ->helperText('Dihitung otomatis: harga dasar × 1.05 × 1.11 (termasuk biaya layanan 5% + PPN 11%)'),
 
                         Forms\Components\Toggle::make('is_active')
                             ->label('Aktif')

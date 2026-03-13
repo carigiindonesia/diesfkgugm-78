@@ -6,7 +6,7 @@ use App\Models\EventPrice;
 
 class PricingService
 {
-    const PLATFORM_FEE_PERCENTAGE = 0.10;
+    const PLATFORM_FEE_PERCENTAGE = 0.05;
 
     const PPN_PERCENTAGE = 0.11;
 
