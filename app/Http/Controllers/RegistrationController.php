@@ -6,6 +6,7 @@ use App\Enums\EventType;
 use App\Enums\ParticipantCategory;
 use App\Models\EventPrice;
 use App\Models\Order;
+use App\Models\Setting;
 use App\Services\PricingService;
 use App\Services\XenditService;
 use Illuminate\Http\Request;
@@ -31,7 +32,9 @@ class RegistrationController extends Controller
             $selectedEventCode = null;
         }
 
-        return view('pages.registrasi', compact('category', 'categories', 'prices', 'eventTypes', 'selectedEventCode'));
+        $registrationOpen = (bool) Setting::get('registration_open', true);
+
+        return view('pages.registrasi', compact('category', 'categories', 'prices', 'eventTypes', 'selectedEventCode', 'registrationOpen'));
     }
 
     public function bundling(Request $request)
@@ -45,11 +48,18 @@ class RegistrationController extends Controller
         $bundles = EventPrice::active()->bundle()->forCategory($category)->get();
         $individualPrices = EventPrice::active()->individual()->forCategory($category)->get();
 
-        return view('pages.registrasi-bundling', compact('category', 'categories', 'bundles', 'individualPrices'));
+        $registrationOpen = (bool) Setting::get('registration_open', true);
+
+        return view('pages.registrasi-bundling', compact('category', 'categories', 'bundles', 'individualPrices', 'registrationOpen'));
     }
 
     public function store(Request $request)
     {
+        if (! (bool) Setting::get('registration_open', true)) {
+            return redirect()->route('registrasi.index')
+                ->with('error', 'Pendaftaran belum dibuka. Silakan hubungi narahubung untuk informasi lebih lanjut.');
+        }
+
         $eventPrice = EventPrice::findOrFail($request->input('event_price_id'));
 
         $formType = $this->determineFormType($eventPrice);

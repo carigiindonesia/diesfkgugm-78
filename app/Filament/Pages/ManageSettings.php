@@ -77,6 +77,7 @@ class ManageSettings extends Page implements HasForms
                     ->schema([
                         Forms\Components\Toggle::make('registration_open')
                             ->label('Registrasi Dibuka')
+                            ->helperText('Jika dimatikan, tombol pendaftaran semua kegiatan akan menampilkan popup bahwa pendaftaran belum dibuka.')
                             ->default(true),
 
                         Forms\Components\Toggle::make('3mpc_open')

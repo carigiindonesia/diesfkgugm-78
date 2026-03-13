@@ -19,6 +19,9 @@ class SettingsSeeder extends Seeder
             ['key' => 'reg_funrun_url', 'value' => 'https://funrun.diesfkgugm.id', 'type' => 'url', 'group' => 'registrasi'],
             ['key' => 'reg_pengmas_url', 'value' => 'https://pm.diesfkgugm.id', 'type' => 'url', 'group' => 'registrasi'],
             ['key' => 'reg_pitch_url', 'value' => 'https://simposium.diesfkgugm.id', 'type' => 'url', 'group' => 'registrasi'],
+
+            // Registration toggle
+            ['key' => 'registration_open', 'value' => '1', 'type' => 'boolean', 'group' => 'registrasi'],
         ];
 
         foreach ($settings as $setting) {
