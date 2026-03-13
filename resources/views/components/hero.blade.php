@@ -10,7 +10,7 @@
         <div class="text-center lg:text-left">
           <!-- Badge -->
           <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-xs font-bold mb-8 border border-white/10 tracking-widest uppercase">
-            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> 17 – 19 April 2026 &bull; Yogyakarta
+            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> 17 – 20 April 2026 &bull; Yogyakarta
           </div>
 
           <!-- Title -->

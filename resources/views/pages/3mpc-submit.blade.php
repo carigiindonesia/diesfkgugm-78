@@ -16,6 +16,22 @@
           Submit 3-Minute Pitch Competition
         </h1>
         <p class="text-slate-500 mt-4 max-w-xl mx-auto">Kirimkan abstrak dan video presentasi riset Anda dalam 3 menit.</p>
+
+        <!-- Template Documents -->
+        <div class="flex flex-wrap justify-center gap-3 mt-6">
+          <a href="https://diska.ugm.ac.id/s/EDzBdfDtyYKwFFk" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-50 border border-amber-200 rounded-xl text-sm font-bold text-amber-700 hover:bg-amber-100 transition-all">
+            <i data-lucide="file-text" class="w-4 h-4"></i> General Terms
+          </a>
+          <a href="https://diska.ugm.ac.id/s/EDzBdfDtyYKwFFk" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-50 border border-amber-200 rounded-xl text-sm font-bold text-amber-700 hover:bg-amber-100 transition-all">
+            <i data-lucide="file-text" class="w-4 h-4"></i> Abstract Guideline
+          </a>
+          <a href="https://diska.ugm.ac.id/s/EDzBdfDtyYKwFFk" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-50 border border-amber-200 rounded-xl text-sm font-bold text-amber-700 hover:bg-amber-100 transition-all">
+            <i data-lucide="file-text" class="w-4 h-4"></i> Presentation Guideline
+          </a>
+        </div>
       </div>
 
       <!-- Form Card -->

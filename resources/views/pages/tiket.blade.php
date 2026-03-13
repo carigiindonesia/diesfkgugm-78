@@ -57,7 +57,7 @@
             <div class="flex items-center gap-3 mb-2">
               <i data-lucide="calendar" class="w-4 h-4 text-amber-600"></i>
               <span class="text-sm font-bold text-amber-800">
-                @if($ticket->event_code === 'funrun') 19 April 2026 @else 17 - 19 April 2026 @endif
+                @if($ticket->event_code === 'funrun') 20 April 2026 @else 17 - 20 April 2026 @endif
               </span>
             </div>
             <div class="flex items-center gap-3">

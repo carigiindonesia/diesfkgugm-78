@@ -24,6 +24,8 @@ class OrderItem extends Model
         'participant_nama_satusehat',
         'participant_jersey_type',
         'participant_jersey_size',
+        'participant_emergency_contact_name',
+        'participant_emergency_contact_whatsapp',
     ];
 
     protected $casts = [
