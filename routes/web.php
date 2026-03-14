@@ -21,7 +21,7 @@ Route::post('/registrasi', [RegistrationController::class, 'store'])->name('regi
 Route::get('/pembayaran/{order:uuid}', [PaymentController::class, 'show'])->name('pembayaran.show');
 
 // Xendit Webhook (CSRF excluded in bootstrap/app.php)
-Route::post('/webhook/xendit', [WebhookController::class, 'handleXendit'])->name('webhook.xendit');
+Route::post('/webhook/xendit', [WebhookController::class, 'handleXendit'])->name('webhook.xendit')->middleware('throttle:60,1');
 
 // Tickets
 Route::get('/tiket/{ticket:ticket_code}', [TicketController::class, 'show'])->name('tiket.show');

@@ -60,7 +60,9 @@ class RegistrationController extends Controller
                 ->with('error', 'Pendaftaran belum dibuka. Silakan hubungi narahubung untuk informasi lebih lanjut.');
         }
 
-        $eventPrice = EventPrice::findOrFail($request->input('event_price_id'));
+        $eventPrice = EventPrice::where('id', $request->input('event_price_id'))
+            ->where('is_active', true)
+            ->firstOrFail();
 
         $formType = $this->determineFormType($eventPrice);
 
@@ -84,9 +86,17 @@ class RegistrationController extends Controller
         $order = null;
 
         DB::transaction(function () use ($validated, $eventPrice, $quantity, $formType, &$order) {
+            // Re-fetch with lock inside transaction to prevent race conditions
+            $eventPrice = EventPrice::where('id', $eventPrice->id)
+                ->where('is_active', true)
+                ->lockForUpdate()
+                ->firstOrFail();
+
+            // Server-side price recalculation to prevent manipulation
+            $expectedDisplayPrice = PricingService::calculateDisplayPrice($eventPrice->base_price);
             $subtotal = $eventPrice->base_price * $quantity;
             $feeAmount = PricingService::calculateFee($eventPrice->base_price) * $quantity;
-            $totalAmount = $eventPrice->display_price * $quantity;
+            $totalAmount = $expectedDisplayPrice * $quantity;
 
             $order = Order::create([
                 'nama_lengkap' => $validated['nama_lengkap'],

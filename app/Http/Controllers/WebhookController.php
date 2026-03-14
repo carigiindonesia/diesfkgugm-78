@@ -21,10 +21,17 @@ class WebhookController extends Controller
             return response()->json(['error' => 'Invalid token'], 403);
         }
 
+        // Limit payload size to prevent abuse
+        if (strlen($request->getContent()) > 65536) {
+            Log::warning('Xendit webhook: payload too large');
+
+            return response()->json(['error' => 'Payload too large'], 413);
+        }
+
         $data = $request->all();
         $xenditInvoiceId = $data['id'] ?? null;
 
-        if (! $xenditInvoiceId) {
+        if (! $xenditInvoiceId || ! is_string($xenditInvoiceId)) {
             return response()->json(['error' => 'Missing invoice ID'], 400);
         }
 

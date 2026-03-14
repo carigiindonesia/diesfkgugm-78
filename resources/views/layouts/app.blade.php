@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <title>@yield('title', 'Dies Natalis FKG UGM ke-78 | Simposium & Workshop Kedokteran Gigi 2026')</title>
   <meta name="description" content="@yield('meta_description', 'Dies Natalis FKG UGM ke-78 — Simposium, Hands-on Workshop, Fun Run & Pengabdian Masyarakat. Empowering Dental Sociopreneurs: Education and Technology for Oral Health Transformation. 17-20 April 2026, Yogyakarta.')" />
   <meta name="keywords" content="Dies Natalis FKG UGM, Dies Natalis FKG UGM ke-78, Fakultas Kedokteran Gigi UGM, Simposium Kedokteran Gigi, Hands-on Workshop UGM, Annual Symposium FKG UGM 2026, Dental Sociopreneurs, Oral Health Transformation, Fun Run FKG UGM, Universitas Gadjah Mada" />
@@ -107,7 +108,13 @@
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans antialiased overflow-x-hidden">
 
+  <!-- Security Protections -->
+  @include('components.security-protection')
+
   @yield('content')
+
+  <!-- Cookie Consent -->
+  @include('components.cookie-consent')
 
   <!-- ==================== WHATSAPP FLOATING BUTTON ==================== -->
   <a href="https://wa.me/6285147686127" target="_blank" rel="noopener noreferrer"
